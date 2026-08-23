@@ -28,16 +28,19 @@ a{text-decoration:none;color:inherit}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-@media(max-width:900px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr!important}.pricing{padding:0 8px}.price-card{margin:0 4px}.nav{display:none}.nav.open{display:flex!important;flex-direction:column;position:absolute;top:52px;right:12px;background:#fff;border:1px solid #E8EEEA;padding:14px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.1);z-index:50;min-width:180px}#menuBtn{display:inline-flex!important;color:var(--ink)}}
+@media(max-width:900px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr!important}.pricing{padding:0 8px}.price-card{margin:0 4px}.nav{display:none!important}.nav.open{display:flex!important;flex-direction:column;position:absolute;top:52px;right:12px;background:#fff;border:1px solid #E8EEEA;padding:14px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.1);z-index:50;min-width:180px}#menuBtn{display:inline-flex!important;color:var(--ink)}}
 @media(max-width:700px){
   .container{width:min(1120px,calc(100% - 24px))}
   .header-inner{padding:10px 0}
   .logo img{height:36px!important}
   #menuBtn{display:inline-flex!important;color:var(--ink)}
   .hero{padding:32px 0 20px}
+  .hero > .container > div:first-child{padding:0 4px}
   h1{font-size:28px!important;letter-spacing:-.04em}
   h2{font-size:22px!important}
   .hero p{font-size:14px!important}
+  .hero .btn{padding:14px 22px!important;font-size:12px!important}
+  .hero .btn + div span{font-size:10px!important;gap:4px!important}
   .section{padding:36px 0}
   .card{padding:16px}
   .grid-4,.grid-3,.grid-2{grid-template-columns:1fr!important;gap:10px}
@@ -198,8 +201,8 @@ h2{font-size:clamp(26px,3.4vw,38px);line-height:1.05;letter-spacing:-.03em;margi
 <a href="#recursos">Recursos</a>
 <a href="#preco">Preço</a>
 <a href="#faq">FAQ</a>
-<a class="btn btn-ghost" style="padding:10px 16px;font-size:11px" href="#login">Entrar</a>
 </nav>
+<a class="btn btn-ghost" style="padding:10px 16px;font-size:11px" href="#login">Entrar</a>
 <button id="menuBtn" style="display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink)" aria-label="menu">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
