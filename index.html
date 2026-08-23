@@ -18,8 +18,12 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Sora',sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 .container{width:min(1120px,calc(100% - 40px));margin:0 auto}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.02em;transition:.2s;border:1px solid transparent;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:10px;font-weight:800;font-size:12px;letter-spacing:.02em;transition:.2s;border:1px solid transparent;cursor:pointer;position:relative;z-index:1}
 .btn-primary{background:var(--primary);color:#0a1a14}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(1,242,147,.35)}
+.btn-glow{position:relative;overflow:visible}
+.btn-glow::before{content:"";position:absolute;inset:-3px;border-radius:12px;background:conic-gradient(from 0deg,transparent 0%,var(--primary) 10%,transparent 20%,transparent 50%,var(--primary) 60%,transparent 70%);animation:spinGlow 3s linear infinite;z-index:-1;opacity:.8}
+.btn-glow::after{content:"";position:absolute;inset:0;border-radius:10px;background:var(--primary);z-index:-1}
+@keyframes spinGlow{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 .btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{background:#1c2a24;transform:translateY(-1px)}
 .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
 .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(1,242,147,.10);border:1px solid rgba(1,242,147,.22);font-size:10px;font-weight:800;letter-spacing:.08em;color:#087a52}
@@ -223,7 +227,7 @@ h2{font-size:clamp(26px,3.4vw,38px);line-height:1.05;letter-spacing:-.03em;margi
 <h1>Infraestrutura para <br>Prospecção Ativa B2B no <span style="background:var(--ink);color:var(--primary);padding:4px 12px;border-radius:8px;display:inline-block;line-height:1">WhatsApp</span>.</h1>
 <p style="color:var(--muted);max-width:620px;margin:16px auto 0;font-size:15px">Encontre leads certos, personalize a abordagem com templates aprovados e deixe o agente de IA prospectar automaticamente para você.</p>
 <div style="display:flex;justify-content:center;margin-top:22px">
-<a href="#contato" class="btn btn-primary" style="padding:16px 28px;box-shadow:0 12px 28px rgba(1,242,147,.35)">AGENDAR DEMONSTRAÇÃO →</a>
+<a href="#contato" class="btn btn-primary btn-glow" style="padding:16px 28px;box-shadow:0 12px 28px rgba(1,242,147,.35)">AGENDAR DEMONSTRAÇÃO →</a>
 </div>
 <div style="display:flex;justify-content:center;gap:14px;margin-top:18px;flex-wrap:wrap;font-size:11px;color:var(--muted);font-weight:600">
 <span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:50%;border:1.5px solid var(--primary);display:grid;place-items:center;font-size:8px;color:var(--primary)">✓</span> WhatsApp Oficial</span>
