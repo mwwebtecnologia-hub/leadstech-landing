@@ -33,8 +33,9 @@ a{text-decoration:none;color:inherit}
   .container{width:min(1120px,calc(100% - 24px))}
   .header-inner{padding:10px 0}
   .logo img{height:36px!important}
-  .nav{display:none!important}
-  #menuBtn{display:inline-flex!important}
+  .nav{display:none}
+  .nav.open{display:flex!important;flex-direction:column;position:absolute;top:52px;right:12px;background:#fff;border:1px solid #E8EEEA;padding:14px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.1);z-index:50;min-width:180px}
+  #menuBtn{display:inline-flex!important;color:var(--ink)}
   .hero{padding:32px 0 20px}
   h1{font-size:28px!important;letter-spacing:-.04em}
   h2{font-size:22px!important}
@@ -45,16 +46,13 @@ a{text-decoration:none;color:inherit}
   .flow{font-size:12px}
   .mockup-kpi{grid-template-columns:1fr!important}
   .kpi b{font-size:16px}
-  .timeline .step{grid-template-columns:28px 1fr;gap:8px}
-  .step-num{width:28px;height:28px;font-size:10px}
-  .timeline::before{left:13px}
   .faq-item summary{font-size:13px;padding:14px 14px}
   .price-head{flex-direction:column;gap:8px;text-align:center;padding:14px}
   .price-card .btn{width:100%;font-size:11px;padding:12px}
   footer .container > div:first-child{grid-template-columns:1fr!important;gap:20px!important}
   footer .logo img{height:40px!important}
   footer .container > div:last-child{flex-direction:column;text-align:center;gap:8px}
-  .mobile-cta{display:block!important}
+  .mobile-cta{display:none!important}
   .section-dark{padding:36px 0}
   .indicators{justify-content:center}
   .eyebrow{font-size:9px}
@@ -204,7 +202,7 @@ h2{font-size:clamp(26px,3.4vw,38px);line-height:1.05;letter-spacing:-.03em;margi
 <a href="#faq">FAQ</a>
 <a class="btn btn-ghost" style="padding:10px 16px;font-size:11px" href="#login">Entrar</a>
 </nav>
-<button id="menuBtn" style="display:none;background:none;border:none;cursor:pointer;padding:6px" aria-label="menu">
+<button id="menuBtn" style="display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink)" aria-label="menu">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
 </div>
@@ -649,8 +647,7 @@ const nav=document.querySelector('.nav');
 let menuOpen=false;
 function toggleMenu(){
  menuOpen=!menuOpen;
- nav.style.display=menuOpen?'flex':'none';
- if(menuOpen){nav.style.flexDirection='column';nav.style.position='absolute';nav.style.top='52px';nav.style.right='12px';nav.style.background='#fff';nav.style.border='1px solid #E8EEEA';nav.style.padding='14px';nav.style.borderRadius='14px';nav.style.boxShadow='0 12px 30px rgba(0,0,0,.1)';nav.style.zIndex='50';nav.style.minWidth='180px'}
+ nav.classList.toggle('open',menuOpen);
 }
 menuBtn?.addEventListener('click',toggleMenu);
 nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(menuOpen)toggleMenu()}));
