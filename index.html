@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leadstech — Prospecção B2B no WhatsApp com IA</title>
+<link rel="icon" href="https://i.postimg.cc/BvwzXwH8/12-(1)-(1).png" type="image/png">
+<meta name="description" content="Prospecção ativa B2B no WhatsApp com infraestrutura oficial, listas de empresas, números virtuais dedicados e agentes de IA.">
+<meta property="og:title" content="Leadstech — Prospecção B2B no WhatsApp com IA">
+<meta property="og:description" content="Infraestrutura completa de prospecção B2B no WhatsApp Oficial da Meta com listas segmentadas, números dedicados e agente de IA.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1a15">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#01F293;--primary-dark:#00c87a;--primary-soft:#e6faf2;--ink:#0f1412;--muted:#66707a;--line:#e7eeea;--surface:#f6f9f7;--white:#fff;--dark:#0f1a15;--radius:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Sora',sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,calc(100% - 40px));margin:0 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.02em;transition:.2s;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--primary);color:#0a1a14}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(1,242,147,.35)}
+.btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{background:#1c2a24;transform:translateY(-1px)}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(1,242,147,.10);border:1px solid rgba(1,242,147,.22);font-size:10px;font-weight:800;letter-spacing:.08em;color:#087a52}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;transition:.2s}
+.card:hover{border-color:#d4e5dc;transform:translateY(-2px);box-shadow:0 12px 28px rgba(16,24,20,.06)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:900px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr!important}.pricing{padding:0 8px}.price-card{margin:0 4px}}
+@media(max-width:700px){
+  .container{width:min(1120px,calc(100% - 24px))}
+  .header-inner{padding:10px 0}
+  .logo img{height:36px!important}
+  .nav{display:none!important}
+  #menuBtn{display:inline-flex!important}
+  .hero{padding:32px 0 20px}
+  h1{font-size:28px!important;letter-spacing:-.04em}
+  h2{font-size:22px!important}
+  .hero p{font-size:14px!important}
+  .section{padding:36px 0}
+  .card{padding:16px}
+  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr!important;gap:10px}
+  .flow{font-size:12px}
+  .mockup-kpi{grid-template-columns:1fr!important}
+  .kpi b{font-size:16px}
+  .timeline .step{grid-template-columns:28px 1fr;gap:8px}
+  .step-num{width:28px;height:28px;font-size:10px}
+  .timeline::before{left:13px}
+  .faq-item summary{font-size:13px;padding:14px 14px}
+  .price-head{flex-direction:column;gap:8px;text-align:center;padding:14px}
+  .price-card .btn{width:100%;font-size:11px;padding:12px}
+  footer .container > div:first-child{grid-template-columns:1fr!important;gap:20px!important}
+  footer .logo img{height:40px!important}
+  footer .container > div:last-child{flex-direction:column;text-align:center;gap:8px}
+  .mobile-cta{display:block!important}
+  .section-dark{padding:36px 0}
+  .indicators{justify-content:center}
+  .eyebrow{font-size:9px}
+  .icon{width:36px;height:48px;font-size:14px}
+}
+@media(max-width:400px){
+  h1{font-size:24px!important}
+  h2{font-size:20px!important}
+  .container{width:calc(100% - 20px)}
+  .btn{padding:12px 18px;font-size:11px}
+}
+.header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.82);backdrop-filter:blur(12px) saturate(1.2);border-bottom:1px solid rgba(231,238,234,.9)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:16px}
+.nav{display:flex;gap:20px;font-size:13px;color:var(--muted);align-items:center}
+.nav a:hover{color:var(--ink)}
+.logo{font-weight:800;letter-spacing:-.04em;font-size:18px;display:flex;align-items:center;gap:9px}
+.logo i{width:28px;height:28px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal;font-size:12px}
+.hero{position:relative;padding:54px 0 28px;overflow:hidden;background:
+ radial-gradient(700px 400px at 85% 0%, rgba(1,242,147,.16), transparent 60%),
+ radial-gradient(600px 360px at 0% 100%, rgba(1,242,147,.07), transparent 60%),
+ linear-gradient(180deg,#fff 0%, #f7fdf9 100%)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(15,26,21,.02) 1px, transparent 1px),linear-gradient(rgba(15,26,21,.02) 1px, transparent 1px);background-size:32px 32px;mask-image:radial-gradient(800px 400px at 50% 0%, #000 60%, transparent 100%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:center;position:relative;justify-items:center}
+.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#0a8a5c}
+h1{font-size:clamp(32px,4.8vw,52px);line-height:.98;letter-spacing:-.05em;margin:0}
+h2{font-size:clamp(26px,3.4vw,38px);line-height:1.05;letter-spacing:-.03em;margin:0}
+.hero p{color:var(--muted);max-width:560px}
+.indicators{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.indicators span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);padding:7px 10px;border-radius:999px;font-size:11px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--primary)}
+.mockup{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(10,26,20,.12), 0 8px 18px rgba(10,26,20,.06);position:relative}
+.mockup::after{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(135deg, rgba(1,242,147,.35), transparent 40%);-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.mockup-top{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fcfdfc,#f6f9f7)}
+.mockup-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;position:relative;overflow:hidden}
+.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary);opacity:.6}
+.kpi b{font-size:20px}
+.pulse{width:8px;height:8px;background:var(--primary);border-radius:50%;box-shadow:0 0 0 6px rgba(1,242,147,.15);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(1,242,147,.3)}70%{box-shadow:0 0 0 10px rgba(1,242,147,0)}100%{box-shadow:0 0 0 0 rgba(1,242,147,0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.section{padding:58px 0}
+.section-dark{background:var(--dark);color:#fff}
+.section-dark .muted{color:#a8b3af}
+.muted{color:var(--muted)}
+.flow{display:flex;flex-direction:column;gap:8px;font-size:13px}
+.timeline{display:grid;gap:14px;position:relative}
+.timeline::before{content:"";position:absolute;left:18px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg, var(--primary), transparent)}
+.step{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;position:relative;z-index:1;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.pricing{max-width:760px;margin:0 auto}
+.price-card{border:1px solid var(--ink);border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.price-head{background:var(--ink);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;transition:.2s}
+.faq-item:hover{border-color:#cfe7db}
+.faq-item summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.faq-item[open] summary{border-bottom:1px solid var(--line);background:var(--surface)}
+.faq-item summary::-webkit-details-marker{display:none}
+.footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:13px;background:#fbfdfc}
+.mobile-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;display:none}
+
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:11px}
+.icon{width:42px;height:56px;border-radius:12px;background:var(--primary-soft);border:1px solid rgba(1,242,147,.25);display:grid;place-items:center;color:#087a52;font-size:16px}
+
+/* === TIMELINE SECTION === */
+/* === TESTIMONIALS === */
+.dep-wrap{overflow:hidden;position:relative;padding:10px 0}
+.dep-wrap::before,.dep-wrap::after{content:"";position:absolute;left:0;right:0;height:80px;z-index:2;pointer-events:none}
+.dep-wrap::before{top:0;background:linear-gradient(180deg,#fff,transparent)}
+.dep-wrap::after{bottom:0;background:linear-gradient(0deg,#fff,transparent)}
+.dep-cols{display:flex;gap:16px;height:420px;position:relative}
+.dep-col{flex:1;display:flex;flex-direction:column;gap:14px;animation:depScroll 25s linear infinite}
+.dep-col:nth-child(2){animation-duration:30s;animation-delay:-8s}
+.dep-col:nth-child(3){animation-duration:28s;animation-delay:-15s}
+.dep-col:nth-child(4){animation-duration:32s;animation-delay:-4s}
+@keyframes depScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.dep-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;transition:.2s;flex-shrink:0}
+.dep-card:hover{border-color:rgba(1,242,147,.3);box-shadow:0 8px 20px rgba(16,24,20,.05)}
+.dep-stars{color:#f5a623;font-size:12px;letter-spacing:2px;margin-bottom:8px}
+.dep-text{font-size:13px;color:var(--ink);line-height:1.6;font-style:italic;margin-bottom:12px}
+.dep-author{display:flex;align-items:center;gap:10px}
+.dep-avatar{width:32px;height:32px;border-radius:50%;background:var(--primary-soft);border:1px solid rgba(1,242,147,.25);display:grid;place-items:center;font-size:12px;font-weight:800;color:#087a52;flex-shrink:0}
+.dep-name{font-size:12px;font-weight:700;color:var(--ink)}
+.dep-role{font-size:10px;color:var(--muted)}
+@media(max-width:768px){
+  .dep-cols{height:auto;flex-direction:column;gap:12px}
+  .dep-col{animation:none;display:flex;flex-direction:column;gap:12px}
+  .dep-wrap::before,.dep-wrap::after{display:none}
+}
+/* === HORIZONTAL STEPS === */
+.tl-steps{display:flex;align-items:flex-start;justify-content:center;gap:0;margin:0 auto 0;max-width:780px;position:relative}
+.tl-steps::before{content:"";position:absolute;top:18px;left:50px;right:50px;height:2px;background:var(--line)}
+.tl-s{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;flex:1;cursor:pointer;padding:0 2px}
+.tl-s .tl-sn{width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--muted);transition:.3s}
+.tl-s.active .tl-sn{border-color:var(--primary);background:var(--primary);color:#0a1a14;box-shadow:0 0 0 5px rgba(1,242,147,.15)}
+.tl-s:hover .tl-sn{border-color:var(--primary);transform:scale(1.08);box-shadow:0 0 0 5px rgba(1,242,147,.12)}
+.tl-s span:last-child{font-size:9px;font-weight:700;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;text-align:center;transition:.3s;white-space:nowrap;line-height:1.2}
+.tl-s.active span:last-child{color:var(--ink);font-weight:800}
+.tl-s:hover span:last-child{color:var(--ink)}
+/* Card area */
+.tl-card-area{margin-top:24px;min-height:200px;position:relative}
+.tl-single{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 24px;display:none;animation:tlFadeIn .3s ease}
+.tl-single.show{display:block}
+@keyframes tlFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.tl-single-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.tl-single-icon{width:40px;height:40px;border-radius:12px;background:var(--primary-soft);border:1px solid rgba(1,242,147,.25);display:grid;place-items:center;flex-shrink:0}
+.tl-single-icon svg{width:18px;height:18px;stroke:var(--primary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tl-single-label{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)}
+.tl-single-title{font-size:17px;font-weight:800;margin:0;color:var(--ink);line-height:1.2;letter-spacing:-.02em}
+.tl-single-desc{font-size:13px;color:var(--muted);line-height:1.6;max-width:600px}
+.tl-single-body{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:start}
+.tl-single-mock{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:11px;flex:1;min-width:200px}
+.tl-mock-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0}
+.tl-single-chips{display:flex;flex-wrap:wrap;gap:4px}
+.tl-chip{padding:3px 8px;border-radius:999px;font-size:10px;background:#fff;border:1px solid var(--line);color:var(--muted);font-weight:600}
+.tl-single-chat{display:flex;flex-direction:column;gap:4px;flex:1;min-width:180px}
+.tl-chat-bubble{padding:7px 12px;border-radius:12px;font-size:11px;max-width:85%;line-height:1.4}
+.tl-chat-lead{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.tl-chat-ai{background:var(--primary-soft);border:1px solid rgba(1,242,147,.2);align-self:flex-end;border-bottom-right-radius:4px;color:#087a52}
+.tl-single-tag{display:inline-flex;align-items:center;gap:4px;margin-top:12px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;background:var(--primary-soft);border:1px solid rgba(1,242,147,.2);color:#087a52}
+.tl-single-tag svg{width:10px;height:10px;stroke:#087a52;fill:none;stroke-width:2.5}
+.tl-single-toggle{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;margin-bottom:6px}
+.tl-toggle-track{width:32px;height:17px;border-radius:999px;background:var(--primary);position:relative}
+.tl-toggle-track::after{content:"";position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#fff}
+.tl-done{text-align:center;padding:24px 0 0}
+.tl-done h3{font-size:clamp(20px,3vw,26px);margin:0 0 8px;letter-spacing:-.03em}
+.tl-done p{color:var(--muted);max-width:420px;margin:0 auto 14px;font-size:13px}
+@media(max-width:768px){
+  .tl-steps{flex-wrap:wrap;gap:0;max-width:400px}
+  .tl-steps::before{display:none}
+  .tl-s{min-width:calc(25% - 4px);margin-bottom:8px}
+  .tl-s .tl-sn{width:32px;height:32px;font-size:11px}
+  .tl-single{padding:16px}
+  .tl-single-title{font-size:15px}
+  .tl-single-body{flex-direction:column}
+  .tl-single-mock,.tl-single-chat{min-width:auto;width:100%}
+}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="container header-inner">
+<a href="#" class="logo"><img src="https://i.postimg.cc/13KdnT3T/variada-(2).png" alt="LEADSTECH" style="height:56px;width:auto"></a>
+<nav class="nav">
+<a href="#como-funciona">Como funciona</a>
+<a href="#recursos">Recursos</a>
+<a href="#preco">Preço</a>
+<a href="#faq">FAQ</a>
+<a class="btn btn-ghost" style="padding:10px 16px;font-size:11px" href="#login">Entrar</a>
+</nav>
+<button id="menuBtn" style="display:none;background:none;border:none;cursor:pointer;padding:6px" aria-label="menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</div>
+</header>
+
+<section class="hero">
+<div class="container hero-grid">
+<div style="text-align:center;max-width:720px;margin:0 auto">
+<div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:14px"><img src="https://i.postimg.cc/TYdHbFJj/meta-(1).png" alt="Selo Meta" style="height:14px;width:auto"><span style="display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:700;font-size:11px;letter-spacing:.02em"><span style="color:#d0d8d3">|</span> Powered by WhatsApp Business API</span></div>
+<h1>Infraestrutura para <br>Prospecção Ativa B2B no <span style="background:var(--ink);color:var(--primary);padding:4px 12px;border-radius:8px;display:inline-block;line-height:1">WhatsApp</span>.</h1>
+<p style="color:var(--muted);max-width:620px;margin:16px auto 0;font-size:15px">Encontre leads certos, personalize a abordagem com templates aprovados e deixe o agente de IA prospectar automaticamente para você.</p>
+<div style="display:flex;justify-content:center;margin-top:22px">
+<a href="#contato" class="btn btn-primary" style="padding:16px 28px;box-shadow:0 12px 28px rgba(1,242,147,.35)">AGENDAR DEMONSTRAÇÃO →</a>
+</div>
+<div style="display:flex;justify-content:center;gap:14px;margin-top:18px;flex-wrap:wrap;font-size:11px;color:var(--muted);font-weight:600">
+<span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:50%;border:1.5px solid var(--primary);display:grid;place-items:center;font-size:8px;color:var(--primary)">✓</span> WhatsApp Oficial</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:50%;border:1.5px solid var(--primary);display:grid;place-items:center;font-size:8px;color:var(--primary)">✓</span> Prospecção B2B</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:50%;border:1.5px solid var(--primary);display:grid;place-items:center;font-size:8px;color:var(--primary)">✓</span> Números Virtuais</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:50%;border:1.5px solid var(--primary);display:grid;place-items:center;font-size:8px;color:var(--primary)">✓</span> Agente de IA</span>
+</div>
+</div>
+
+<div class="mockup" style="animation:float 6s ease-in-out infinite;display:none">
+<div class="mockup-top">
+<div style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:11px"><span style="display:flex;gap:4px"><i style="width:8px;height:8px;border-radius:50%;background:#ff5f57;display:inline-block"></i><i style="width:8px;height:8px;border-radius:50%;background:#ffbd2e;display:inline-block"></i><i style="width:8px;height:8px;border-radius:50%;background:#28c840;display:inline-block"></i></span> LEADSTECH • Prospecção B2B <span style="margin-left:6px;font-size:10px;padding:4px 8px;border-radius:999px;background:var(--primary);color:#0a1a14;font-weight:800">● CAMPANHA ATIVA</span></div>
+<div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700"><span class="pulse"></span> Agente IA • ATIVO</div>
+</div>
+<div class="mockup-kpi">
+<div class="kpi"><div style="font-size:10px;color:var(--muted);letter-spacing:.06em">EMPRESAS ENCONTRADAS</div><b>12.480</b><div style="font-size:10px;color:#0a8a5c">lista segmentada • ilustrativo</div></div>
+<div class="kpi"><div style="font-size:10px;color:var(--muted);letter-spacing:.06em">CONVERSAS INICIADAS</div><b>842</b><div style="font-size:10px;color:var(--muted)">via WhatsApp Oficial</div></div>
+<div class="kpi"><div style="font-size:10px;color:var(--muted);letter-spacing:.06em">LEADS QUALIFICADOS</div><b>127</b><div style="font-size:10px;color:var(--muted)">pré-venda IA</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px 12px">
+<div class="card" style="padding:12px;background:linear-gradient(180deg,#fff,#f7f9f7)"><div style="font-size:10px;color:var(--muted);letter-spacing:.06em">WHATSAPP</div><div style="font-weight:800">✓ CONECTADO</div><div style="font-size:10px;color:var(--muted)">API Oficial • Meta</div></div>
+<div class="card" style="padding:12px;background:linear-gradient(180deg,#fff,#f7f9f7)"><div style="font-size:10px;color:var(--muted);letter-spacing:.06em">NÚMEROS DA OPERAÇÃO</div><div style="font-size:11px;margin-top:4px">● Ativo &nbsp; ● Ativo &nbsp; <span style="color:#d49a00">● Monitorando</span></div><div style="font-size:10px;color:var(--muted)">contingência habilitada</div></div>
+</div>
+<div style="padding:0 12px 12px">
+<table style="width:100%;font-size:11px;border-collapse:collapse">
+<tr style="color:var(--muted)"><td style="padding:6px 4px">Empresa</td><td>Segmento</td><td style="text-align:right">Status</td></tr>
+<tr style="border-top:1px solid var(--line)"><td style="padding:8px 4px">Empresa A • GO</td><td>SaaS</td><td style="text-align:right"><span class="chip" style="background:var(--primary-soft);border-color:rgba(1,242,147,.3)">Qualificado</span></td></tr>
+<tr style="border-top:1px solid var(--line)"><td style="padding:8px 4px">Empresa B • SP</td><td>Indústria</td><td style="text-align:right"><span class="chip">Em conversa</span></td></tr>
+</table>
+<div style="font-size:10px;color:var(--muted);margin-top:6px">* Dados fictícios apenas para visualização do produto.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding:28px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden">
+<div class="container" style="text-align:center">
+<p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 16px">Mais de 550 empresas no Brasil confiam na Leadstech</p>
+</div>
+<div class="logo-marquee" style="overflow:hidden;white-space:nowrap;position:relative">
+<div class="logo-track" style="display:inline-flex;align-items:center;gap:44px;animation:logoScroll 22s linear infinite">
+<img src="https://i.postimg.cc/KcKCqJ0r/1.png" alt="Logo parceiro 1" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/G3B67qXP/10.png" alt="Logo parceiro 2" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/59HD7nsm/2.png" alt="Logo parceiro 3" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/8kFxKtZr/3.png" alt="Logo parceiro 4" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/VsS2GDKC/4.png" alt="Logo parceiro 5" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/1RgbCJvF/5.png" alt="Logo parceiro 6" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/XNZtHQsd/6.png" alt="Logo parceiro 7" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/HWJFZB65/7.png" alt="Logo parceiro 8" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/zDL4t0xT/8.png" alt="Logo parceiro 9" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/pV93Gqsf/9.png" alt="Logo parceiro 10" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<!-- duplicate for seamless loop -->
+<img src="https://i.postimg.cc/KcKCqJ0r/1.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/G3B67qXP/10.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/59HD7nsm/2.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/8kFxKtZr/3.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/VsS2GDKC/4.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/1RgbCJvF/5.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/XNZtHQsd/6.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/HWJFZB65/7.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/zDL4t0xT/8.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+<img src="https://i.postimg.cc/pV93Gqsf/9.png" alt="" aria-hidden="true" style="height:84px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.9">
+</div>
+</div>
+<style>@keyframes logoScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}} @media(prefers-reduced-motion:reduce){.logo-track{animation:none}}</style>
+</section>
+
+<section class="section" id="como-funciona" style="background:#fff">
+<div class="container">
+<p class="eyebrow" style="text-align:center">Configuração da operação</p>
+<h2 style="text-align:center">Do primeiro acesso à sua primeira campanha.</h2>
+<p class="muted" style="text-align:center;max-width:520px;margin:10px auto 0;font-size:14px">Você não precisa descobrir como configurar tudo sozinho. A Leadstech estrutura sua operação, conecta os canais, define o público e coloca sua primeira campanha para rodar.</p>
+<div class="tl-steps" style="margin-top:28px">
+<div class="tl-s active" data-step="0"><span class="tl-sn">01</span><span>Integração</span></div>
+<div class="tl-s" data-step="1"><span class="tl-sn">02</span><span>Número</span></div>
+<div class="tl-s" data-step="2"><span class="tl-sn">03</span><span>Template</span></div>
+<div class="tl-s" data-step="3"><span class="tl-sn">04</span><span>Público</span></div>
+<div class="tl-s" data-step="4"><span class="tl-sn">05</span><span>Campanha</span></div>
+<div class="tl-s" data-step="5"><span class="tl-sn">06</span><span>IA</span></div>
+<div class="tl-s" data-step="6"><span class="tl-sn">07</span><span>Ativar</span></div>
+<div class="tl-s" data-step="7"><span class="tl-sn">08</span><span>Otimizar</span></div>
+</div>
+<div class="tl-card-area">
+<div class="tl-single show" data-card="0">
+<div class="tl-single-head"><div class="tl-single-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div><div class="tl-single-label">Etapa 01</div><div class="tl-single-title">Conectamos sua operação</div></div></div>
+<div class="tl-single-desc">Você envia o convite de integração para a equipe Leadstech e conectamos sua BM ao ambiente da plataforma.</div>
+<div class="tl-single-body"><div class="tl-single-mock"><div class="tl-mock-row"><span>Envie o convite da sua BM</span><span style="color:var(--primary);font-weight:700">→</span></div><div class="tl-mock-row"><span>Ou utilize a BM da Leadstech</span><span style="color:var(--primary);font-weight:700">→</span></div></div></div>
+<div class="tl-single-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Configuração inicial</div>
+</div>
+<div class="tl-single" data-card="1">
+<div class="tl-single-head"><div class="tl-single-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div><div class="tl-single-label">Etapa 02</div><div class="tl-single-title">Configuramos seu número</div></div></div>
+<div class="tl-single-desc">Adquirimos um número virtual dedicado, definimos o DDD e configuramos na estrutura oficial do WhatsApp API.</div>
+<div class="tl-single-body"><div class="tl-single-mock"><div class="tl-mock-row"><span>DDD</span><span style="font-weight:700">62</span></div><div class="tl-mock-row"><span>Número</span><span style="font-weight:700">98485-4833</span></div><div class="tl-mock-row"><span>Status</span><span style="color:var(--primary);font-weight:700">WhatsApp API ✓</span></div></div></div>
+<div class="tl-single-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Seu WhatsApp pronto</div>
+</div>
+<div class="tl-single" data-card="2">
+<div class="tl-single-head"><div class="tl-single-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="tl-single-label">Etapa 03</div><div class="tl-single-title">Aprovamos sua abordagem</div></div></div>
+<div class="tl-single-desc">Definimos e aprovamos o template de mensagem que será utilizado na primeira campanha.</div>
+<div class="tl-single-body"><div class="tl-single-chat"><div class="tl-chat-bubble tl-chat-lead">Olá, [Nome]. Tudo bem? Identificamos uma oportunidade para empresas do seu segmento...</div><div class="tl-chat-bubble tl-chat-ai">Template aguardando aprovação...</div></div></div>
+<div class="tl-single-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Template aprovado</div>
+</div>
+<div class="tl-single" data-card="3">
+<div class="tl-single-head"><div class="tl-single-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><div class="tl-single-label">Etapa 04</div><div class="tl-single-title">Encontramos seu cliente ideal</div></div></div>
+<div class="tl-single-desc">Aplicamos filtros e segmentações para encontrar exatamente o perfil de empresa que você deseja prospectar.</div>
+<div class="tl-single-body"><div class="tl-single-chips"><span class="tl-chip">Segmento</span><span class="tl-chip">CNAE</span><span class="tl-chip">Porte</span><span class="tl-chip">Faturamento</span><span class="tl-chip">Região</span><span class="tl-chip">Estado</span><span class="tl-chip">Cidade</span><span class="tl-chip">Abertura</span><span class="tl-chip">Telefone</span></div></div>
+<div class="tl-single-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Filtros aplicados</div>
+</div>
+<div class="tl-single" data-card="4">
+<div class="tl-single-head"><div class="tl-single-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div><div class="tl-single-label">Etapa 05</div><div class="tl-single-title">Definimos como prospectar</div></div></div>
+<div class="tl-single-desc">Configuramos a janela de campanha e a velocidade dos disparos.</div>
+<div class="tl-single-body"><div class="tl-single-mock"><div class="tl-mock-row"><span>Janela</span><span style="font-weight:700">09:00 — 18:00</span></div><div class="tl-mock-row"><span>Velocidade</span><span style="letter-spacing:2px;color:var(--primary)">●●●○○</span></div><div class="tl-mock-row"><span>Volume</span><span style="font-weight:700">Configurado</span></div></div></div>
+<div class="tl-single-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Operação configurada</div>
+</div>
+<div class="tl-single" data-card="5">
+<div class="tl-single-head"><div class="tl-single-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><div class="tl-single-label">Etapa 06 · Opcional</div><div class="tl-single-title">Configuramos seu agente de IA</div></div></div>
+<div class="tl-single-desc">Se você optar pela IA, configuramos o agente para acompanhar as conversas e seguir a estratégia definida.</div>
+<div class="tl-single-body"><div style="display:flex;flex-direction:column;gap:6px"><div class="tl-single-toggle"><span>Agente IA</span><span class="tl-toggle-track"></span><span style="color:#087a52;font-weight:800">ON</span></div><div style="font-size:10px;color:var(--muted);font-style:italic">Você decide se quer utilizar a IA.</div></div><div class="tl-single-chat"><div class="tl-chat-bubble tl-chat-lead">Tenho interesse. Como funciona?</div><div class="tl-chat-bubble tl-chat-ai">Claro! Posso te explicar como funciona...</div></div></div>
+<div class="tl-single-tag"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> IA opcional</div>
+</div>
+<div class="tl-single" data-card="6">
+<div class="tl-single-head"><div class="tl-single-icon" style="background:var(--primary);border-color:var(--primary)"><svg viewBox="0 0 24 24" style="stroke:#0a1a14"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="tl-single-label">Etapa 07</div><div class="tl-single-title">Colocamos sua campanha no ar</div></div></div>
+<div class="tl-single-desc" style="font-weight:600;color:var(--ink)">Com tudo configurado, ativamos a primeira campanha.</div>
+<div class="tl-single-body"><div class="tl-single-mock" style="background:var(--primary-soft);border-color:rgba(1,242,147,.3)"><div style="font-size:10px;font-weight:800;color:#087a52;margin-bottom:4px">CAMPAIGN READY</div><div class="tl-mock-row"><span style="color:var(--primary)">✓</span><span>Público definido</span></div><div class="tl-mock-row"><span style="color:var(--primary)">✓</span><span>Template aprovado</span></div><div class="tl-mock-row"><span style="color:var(--primary)">✓</span><span>Número conectado</span></div><div class="tl-mock-row"><span style="color:var(--primary)">✓</span><span>Configurações concluídas</span></div><div class="tl-mock-row"><span style="color:var(--primary)">✓</span><span>IA configurada (opcional)</span></div></div></div>
+<div class="tl-single-tag" style="background:var(--primary);color:#0a1a14;border-color:var(--primary)"><svg viewBox="0 0 24 24" style="stroke:#0a1a14"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> É aqui que sua prospecção começa.</div>
+</div>
+<div class="tl-single" data-card="7">
+<div class="tl-single-head"><div class="tl-single-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="tl-single-label">Etapa 08</div><div class="tl-single-title">Monitoramos e otimizamos</div></div></div>
+<div class="tl-single-desc">Depois da ativação, acompanhamos a operação e realizamos ajustes na estratégia quando necessário.</div>
+<div class="tl-single-body"><div class="tl-single-mock"><div class="tl-mock-row"><span>Campanha</span><span style="color:var(--primary);font-weight:700">Ativa</span></div><div class="tl-mock-row"><span>Conversas</span><span style="font-weight:700;color:var(--primary)">127</span></div><div class="tl-mock-row"><span>Leads</span><span style="font-weight:700">34 interessados</span></div><div class="tl-mock-row"><span>IA</span><span style="color:#087a52;font-weight:700">Ativa</span></div></div></div>
+<div class="tl-single-tag"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Acompanhamento contínuo</div>
+</div>
+</div>
+<div class="tl-done">
+<div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:var(--primary-soft);border:1px solid rgba(1,242,147,.25);margin-bottom:14px">
+<span style="width:7px;height:7px;border-radius:50%;background:var(--primary);animation:pulse 2s infinite"></span>
+<span style="font-size:10px;font-weight:800;letter-spacing:.06em;color:#087a52;text-transform:uppercase">Pronto. Sua operação está ativa.</span>
+</div>
+<h3>Sua equipe começa a prospectar agora.</h3>
+<p class="muted">Acompanhe as conversas, os leads e os resultados da prospecção diretamente pela Leadstech.</p>
+<a href="#contato" class="btn btn-primary" style="margin-top:4px">Conhecer a plataforma →</a>
+</div>
+</div>
+</section>
+
+
+
+<section class="section" style="background:var(--surface)" id="recursos">
+<div class="container">
+<p class="eyebrow">Recursos avançados</p>
+<h2>Uma operação completa de prospecção. <span style="color:#0a8a5c">Não apenas uma ferramenta.</span></h2>
+<div class="grid-4" style="margin-top:18px">
+<div class="card">
+<div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+<h3 style="font-size:14px;margin:10px 0 6px">WhatsApp Oficial da Meta</h3>
+<p style="font-size:13px;color:var(--muted);line-height:1.6">Conexão 100% oficial e homologada por um BSP da Meta. Baixíssimo risco de banimento, estabilidade da API oficial e suporte direto via canal oficial.</p>
+</div>
+<div class="card">
+<div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+<h3 style="font-size:14px;margin:10px 0 6px">Prospecção B2B</h3>
+<p style="font-size:13px;color:var(--muted);line-height:1.6">Base de dados públicas de empresas com enriquecimento de dados. Segmentação por CNAE, porte, faturamento e filtros avançados para encontrar o público certo.</p>
+</div>
+<div class="card">
+<div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+<h3 style="font-size:14px;margin:10px 0 6px">Números virtuais dedicados</h3>
+<p style="font-size:13px;color:var(--muted);line-height:1.6">Provisionamento direto na API oficial do WhatsApp. Números regionais com DDD local, monitoramento e rodízio automático para manter a saúde da conta.</p>
+</div>
+<div class="card">
+<div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/></svg></div>
+<h3 style="font-size:14px;margin:10px 0 6px">Agente de IA</h3>
+<p style="font-size:13px;color:var(--muted);line-height:1.6">Agente configurado como BDR pré-vendedor. Filtra oportunidades e qualifica leads automaticamente. Powered by OpenAI — tecnologia de ponta.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2>Prospecção B2B utilizando infraestrutura oficial.</h2>
+<p class="muted">Infraestrutura oficial do WhatsApp Business da Meta para comunicação e prospecção.</p>
+<div class="grid-2" style="margin-top:16px">
+<div class="card">
+<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">WhatsApp Oficial</span><span class="chip">API Oficial</span><span class="chip">Infraestrutura profissional</span></div>
+<div class="grid-2" style="margin-top:14px">
+<div class="card" style="background:var(--surface)"><b>Você já possui BM verificada?</b><p style="font-size:12px;color:var(--muted)">Conectamos sua estrutura e ajudamos na configuração.</p></div>
+<div class="card" style="background:var(--surface);border-color:var(--primary)"><b>Não possui BM?</b><p style="font-size:12px;color:var(--muted)">Use estrutura da Leadstech.</p><div style="font-weight:800;color:#0a8a5c">+ R$ 199,90/mês</div></div>
+</div>
+</div>
+<div class="card" style="background:linear-gradient(180deg,#0f1a15,#141f1b);color:#fff;border-color:#1e2e28">
+<b>Por que oficial importa?</b>
+<ul style="font-size:13px;color:#a8b3af">
+<li>Operação dentro das regras da Meta</li>
+<li>Template aprovado e rastreável</li>
+<li>Base para escala sem improviso</li>
+</ul>
+<div style="font-size:11px;color:#7a8a85">Monitoramento, contingência e redução de interrupções — sem promessas irreais.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" style="background:var(--surface)">
+<div class="container">
+<h2>Pare de prospectar no escuro.</h2>
+<p class="muted">Encontre empresas que realmente fazem sentido para sua oferta.</p>
+<div class="card" style="margin-top:14px;box-shadow:0 12px 32px rgba(0,0,0,.05)">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><b>Filtros inteligentes</b><span class="chip" style="background:var(--primary);border-color:var(--primary);font-weight:800">IMPORTAR MINHA PRÓPRIA LISTA</span></div>
+<div class="grid-4" style="margin-top:14px">
+<div class="card" style="padding:14px;text-align:center"><div style="font-size:11px;color:var(--muted)">Segmento</div><b>CNAE</b></div>
+<div class="card" style="padding:14px;text-align:center"><div style="font-size:11px;color:var(--muted)">Porte</div><b>Pequeno ao Grande</b></div>
+<div class="card" style="padding:14px;text-align:center"><div style="font-size:11px;color:var(--muted)">Faturamento</div><b>Faixas</b></div>
+<div class="card" style="padding:14px;text-align:center"><div style="font-size:11px;color:var(--muted)">Localização</div><b>Estado / Cidade</b></div>
+</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;margin-top:14px">
+<tr style="color:var(--muted)"><td style="padding:8px">Empresa</td><td>Segmento</td><td>Porte</td><td>Local</td><td style="text-align:right">Status</td></tr>
+<tr style="border-top:1px solid var(--line)"><td style="padding:10px 8px">Empresa X • Tecnologia</td><td>Médio</td><td>GO</td><td><span class="chip">Encontrada</span></td><td style="text-align:right">●</td></tr>
+<tr style="border-top:1px solid var(--line)"><td style="padding:10px 8px">Empresa Y • Energia</td><td>Grande</td><td>SP</td><td><span class="chip" style="background:var(--primary-soft)">Prospectada</span></td><td style="text-align:right">●</td></tr>
+</table>
+<div style="font-size:11px;color:var(--muted);margin-top:8px">Interface ilustrativa. Não são empresas reais.</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2>Uma infraestrutura preparada para sua operação.</h2>
+<p class="muted">Sua prospecção não precisa depender de um único número.</p>
+<div class="grid-4" style="margin-top:16px">
+<div class="card" style="text-align:center"><div style="margin:0 auto 8px;width:40px;height:40px;border-radius:12px;background:var(--primary-soft);display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><b>Número 01</b><div style="color:#0a8a5c;font-weight:700">● Ativo</div><div style="font-size:11px;color:var(--muted)">180 envios/dia</div></div>
+<div class="card" style="text-align:center"><div style="margin:0 auto 8px;width:40px;height:40px;border-radius:12px;background:var(--primary-soft);display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><b>Número 02</b><div style="color:#0a8a5c;font-weight:700">● Ativo</div><div style="font-size:11px;color:var(--muted)">180 envios/dia</div></div>
+<div class="card" style="text-align:center"><div style="margin:0 auto 8px;width:40px;height:40px;border-radius:12px;background:var(--primary-soft);display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><b>Número 03</b><div style="color:#d49a00;font-weight:700">● Monitorando</div><div style="font-size:11px;color:var(--muted)">em observação</div></div>
+<div class="card" style="text-align:center;border-style:dashed"><div style="margin:0 auto 8px;width:40px;height:40px;border-radius:12px;background:var(--surface);display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><b>Número 04</b><div style="color:var(--muted)">Em contingência</div><div style="font-size:11px;color:var(--muted)">pronto para rodízio</div></div>
+</div>
+<div class="card" style="margin-top:12px;background:var(--surface);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-size:13px;color:var(--muted)">Monitoramento, contingência e rodízio para reduzir interrupções.</span><b>Número adicional: R$ 49,90/mês</b></div>
+</div>
+</section>
+
+<section class="section" style="background:var(--surface)">
+<div class="container">
+<h2>Seu BDR com IA.</h2>
+<p class="muted">Deixe a inteligência artificial cuidar da primeira conversa.</p>
+<div class="grid-2" style="margin-top:16px">
+<div class="card" style="padding:0;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.08)">
+<div style="padding:12px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center"><b>WhatsApp • Leadstech IA</b><span style="font-size:11px;display:flex;align-items:center;gap:6px"><span class="pulse"></span> ATIVO</span></div>
+<div style="padding:14px;font-size:13px;display:grid;gap:10px;background:linear-gradient(180deg,#f7f9f7,#fff)">
+<div style="background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:14px;max-width:88%">Olá, tudo bem? Falo com o responsável pela área comercial?</div>
+<div style="background:var(--primary);padding:10px 12px;border-radius:14px;justify-self:end;max-width:78%">Sim. Quem gostaria?</div>
+<div style="background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:14px;max-width:88%">Somos da Leadstech. Ajudamos empresas B2B a estruturar prospecção ativa no WhatsApp. Posso te fazer uma pergunta rápida?</div>
+<div style="background:var(--primary);padding:10px 12px;border-radius:14px;justify-self:end">Pode.</div>
+<div style="background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:14px;max-width:88%">Hoje vocês possuem equipe dedicada à prospecção?</div>
+</div>
+</div>
+<div>
+<div class="grid-3">
+<div class="kpi" style="text-align:center"><div style="font-size:10px;color:var(--muted);letter-spacing:.08em">CONVERSAS</div><b style="font-size:24px">24</b></div>
+<div class="kpi" style="text-align:center;border-color:rgba(1,242,147,.35)"><div style="font-size:10px;color:var(--muted);letter-spacing:.08em">QUALIFICADOS</div><b style="font-size:24px;color:#0a8a5c">8</b></div>
+<div class="kpi" style="text-align:center"><div style="font-size:10px;color:var(--muted);letter-spacing:.08em">OPORTUNIDADES</div><b style="font-size:24px">3</b></div>
+</div>
+<p style="margin-top:14px;font-weight:700;font-size:15px">Seu vendedor não precisa conversar com todo mundo. Só com quem faz sentido.</p>
+<div class="card" style="margin-top:10px">1 agente de IA incluído. <b>Agente adicional: R$ 49,90/mês</b> <div style="font-size:12px;color:var(--muted)">Treinável para sua oferta e tom de voz.</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<p class="eyebrow">Acompanhamento que importa</p>
+<h2>Você não recebe apenas um login.</h2>
+<p class="muted">A gente ajuda a colocar sua operação para funcionar.</p>
+<div class="timeline" style="margin-top:18px">
+<div class="step"><div class="step-num">01</div><div><b>ENTENDEMOS SEU NEGÓCIO</b><div style="font-size:13px;color:var(--muted)">Perfil ideal de cliente e estratégia inicial.</div></div></div>
+<div class="step"><div class="step-num">02</div><div><b>CONFIGURAMOS SUA ESTRUTURA</b><div style="font-size:13px;color:var(--muted)">WhatsApp, números e ambiente da operação.</div></div></div>
+<div class="step"><div class="step-num">03</div><div><b>CRIAMOS SUA PRIMEIRA CAMPANHA</b><div style="font-size:13px;color:var(--muted)">Público, segmentação e abordagem.</div></div></div>
+<div class="step"><div class="step-num">04</div><div><b>CONFIGURAMOS O AGENTE</b><div style="font-size:13px;color:var(--muted)">IA ajustada para pré-venda.</div></div></div>
+<div class="step"><div class="step-num">05</div><div><b>COLOCAMOS PARA RODAR</b><div style="font-size:13px;color:var(--muted)">Sua operação começa a prospectar.</div></div></div>
+<div class="step"><div class="step-num">06</div><div><b>ACOMPANHAMOS</b><div style="font-size:13px;color:var(--muted)">Suporte para evoluir sua operação.</div></div></div>
+</div>
+<div class="card" style="margin-top:14px;background:linear-gradient(90deg, var(--primary-soft), #fff);border-color:rgba(1,242,147,.3)"><b>✓ Você não precisa ser especialista em automação. A gente ajuda a colocar a operação de pé.</b></div>
+</div>
+</section>
+
+<section class="section pricing" id="preco">
+<div class="container">
+<div style="text-align:center;max-width:640px;margin:0 auto">
+<p class="eyebrow">Investimento</p>
+<h2>Comece sua operação de prospecção por <span style="color:#0a8a5c">R$ 1.000/mês.</span></h2>
+</div>
+<div class="price-card" style="margin-top:18px">
+<div class="price-head"><b>LEADSTECH — Plano Completo</b><span style="font-size:11px;background:var(--primary);color:#0a1a14;padding:6px 10px;border-radius:999px;font-weight:800">MAIS ESCOLHIDO</span></div>
+<div style="padding:20px">
+<div style="display:flex;align-items:baseline;gap:6px;justify-content:center"><span style="font-size:38px;font-weight:800;letter-spacing:-.04em">R$ 1.000</span><span style="color:var(--muted)">/mês</span></div>
+<div style="text-align:center;font-size:11px;color:var(--muted);margin-top:4px">Sem fidelidade • cancele quando quiser</div>
+<ul style="columns:2;gap:18px;font-size:13px;color:var(--muted);margin:16px 0;list-style:none;padding:0">
+<li>✓ Plataforma Leadstech</li><li>✓ 1 agente de IA</li><li>✓ 1 número virtual dedicado</li><li>✓ Segmentação de empresas</li><li>✓ Filtros por segmento/porte/faturamento</li><li>✓ Automação de prospecção</li><li>✓ Configuração inicial</li><li>✓ Criação da primeira campanha</li><li>✓ Acompanhamento de especialista</li><li>✓ Estrutura de contingência</li><li>✓ Suporte operacional</li><li>✓ Importação de lista própria</li>
+</ul>
+<a href="#contato" class="btn btn-dark" style="width:100%;padding:16px">QUERO MONTAR MINHA PRIMEIRA CAMPANHA</a>
+<div class="grid-2" style="margin-top:12px">
+<div class="card" style="padding:14px;text-align:center;background:var(--surface)"><div style="font-size:11px;color:var(--muted)">Adicional</div><b>Número virtual extra</b><div style="font-weight:800;color:#0a8a5c">R$ 49,90/mês</div></div>
+<div class="card" style="padding:14px;text-align:center;background:var(--surface)"><div style="font-size:11px;color:var(--muted)">Adicional</div><b>Agente de IA extra</b><div style="font-weight:800;color:#0a8a5c">R$ 49,90/mês</div></div>
+</div>
+<div class="card" style="margin-top:12px;background:linear-gradient(180deg,#fff,#f6f9f7)">
+<b>Você já possui uma BM verificada?</b>
+<p style="font-size:12px;color:var(--muted)">Use sua própria estrutura e ajudamos a conectar o WhatsApp API.</p>
+<p style="font-size:12px;color:var(--muted)"><b>Não possui?</b> Use BM da Leadstech. <b style="color:#0a8a5c">+ R$ 199,90/mês</b></p>
+<div style="display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap;font-size:12px">
+<span class="chip">Plano R$ 1.000</span> <span>+</span> <span class="chip">BM R$ 199,90</span> <span>=</span> <span class="chip" style="background:var(--ink);color:#fff;font-weight:800">Total R$ 1.199,90/mês</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" style="background:#fff;overflow:hidden">
+<div class="container" style="text-align:center">
+<p class="eyebrow">Depoimentos</p>
+<h2>O que nossos clientes dizem</h2>
+<p class="muted" style="max-width:500px;margin:10px auto 0;font-size:14px">Mais de 550 empresas já transformaram suas vendas com a Leadstech</p>
+</div>
+<div class="dep-wrap">
+<div class="dep-cols">
+<div class="dep-col">
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"A qualidade das reuniões mudou o nosso negócio. A abordagem multicanal deles é extremamente assertiva e respeita o perfil do nosso cliente ideal."</div><div class="dep-author"><div class="dep-avatar">F</div><div><div class="dep-name">Fernando Lima</div><div class="dep-role">Fundador (Consultoria Tech)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"Parei de desperdiçar o tempo da minha equipe sênior. Agora nossos vendedores entram apenas para conduzir as reuniões com leads já qualificados e engajados."</div><div class="dep-author"><div class="dep-avatar">A</div><div><div class="dep-name">Amanda Costa</div><div class="dep-role">Diretora Comercial (SaaS B2B)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"O painel de acompanhamento nos dá total visibilidade. Sabemos exatamente quantos leads entram e como a IA está performando."</div><div class="dep-author"><div class="dep-avatar">R</div><div><div class="dep-name">Ricardo Mendes</div><div class="dep-role">CEO (Indústria)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"A configuração foi rápida e o suporte excelente. Em menos de uma semana já estávamos com a primeira campanha no ar."</div><div class="dep-author"><div class="dep-avatar">F</div><div><div class="dep-name">Fernando Lima</div><div class="dep-role">Fundador (Consultoria Tech)</div></div></div></div>
+</div>
+<div class="dep-col">
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"Transparência e segurança. A estratégia de usar LinkedIn, e-mail e WhatsApp de forma contextual fez nossas vendas B2B crescerem de maneira previsível."</div><div class="dep-author"><div class="dep-avatar">C</div><div><div class="dep-name">Carlos Oliveira</div><div class="dep-role">CEO (Serviços High-Ticket)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"A automação com IA foi um divisor de águas. Recebemos leads qualificados enquanto focamos em fechar negócios."</div><div class="dep-author"><div class="dep-avatar">M</div><div><div class="dep-name">Mariana Souza</div><div class="dep-role">Head de Vendas (Tech)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"Em 30 dias triplicamos o volume de reuniões agendadas. O ROI foi rápido e consistente."</div><div class="dep-author"><div class="dep-avatar">P</div><div><div class="dep-name">Pedro Almeida</div><div class="dep-role">Diretor Comercial (SaaS)</div></div></div></div>
+</div>
+<div class="dep-col">
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"A qualidade das reuniões mudou o nosso negócio. A abordagem multicanal deles é extremamente assertiva e respeita o perfil do nosso cliente ideal."</div><div class="dep-author"><div class="dep-avatar">A</div><div><div class="dep-name">Amanda Costa</div><div class="dep-role">Diretora Comercial (SaaS B2B)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"Parei de desperdiçar o tempo da minha equipe sênior. Agora nossos vendedores entram apenas para conduzir as reuniões com leads já qualificados e engajados."</div><div class="dep-author"><div class="dep-avatar">F</div><div><div class="dep-name">Fernando Lima</div><div class="dep-role">Fundador (Consultoria Tech)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"O painel de acompanhamento nos dá total visibilidade. Sabemos exatamente quantos leads entram e como a IA está performando."</div><div class="dep-author"><div class="dep-avatar">R</div><div><div class="dep-name">Ricardo Mendes</div><div class="dep-role">CEO (Indústria)</div></div></div></div>
+</div>
+<div class="dep-col">
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"Transparência e segurança. A estratégia de usar LinkedIn, e-mail e WhatsApp de forma contextual fez nossas vendas B2B crescerem de maneira previsível."</div><div class="dep-author"><div class="dep-avatar">C</div><div><div class="dep-name">Carlos Oliveira</div><div class="dep-role">CEO (Serviços High-Ticket)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"A automação com IA foi um divisor de águas. Recebemos leads qualificados enquanto focamos em fechar negócios."</div><div class="dep-author"><div class="dep-avatar">M</div><div><div class="dep-name">Mariana Souza</div><div class="dep-role">Head de Vendas (Tech)</div></div></div></div>
+<div class="dep-card"><div class="dep-stars">★★★★★</div><div class="dep-text">"Em 30 dias triplicamos o volume de reuniões agendadas. O ROI foi rápido e consistente."</div><div class="dep-author"><div class="dep-avatar">P</div><div><div class="dep-name">Pedro Almeida</div><div class="dep-role">Diretor Comercial (SaaS)</div></div></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="faq">
+<div class="container" style="max-width:760px">
+<h2 style="text-align:center">Perguntas frequentes</h2>
+<div style="display:grid;gap:10px;margin-top:18px">
+<details class="faq-item"><summary>O que está incluído nos R$ 1.000? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Tudo do plano: plataforma, 1 agente IA, 1 número, segmentação, automação, configuração, primeira campanha, acompanhamento, contingência, suporte e importação de lista.</div></details>
+<details class="faq-item"><summary>Preciso ter minha própria BM? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Não. Use a sua ou a da Leadstech por + R$199,90/mês.</div></details>
+<details class="faq-item"><summary>Posso usar minha BM verificada? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Sim. Ajudamos na conexão do WhatsApp API.</div></details>
+<details class="faq-item"><summary>Quanto custa BM da Leadstech? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">R$ 199,90/mês adicional.</div></details>
+<details class="faq-item"><summary>Como funciona o WhatsApp API? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Via infraestrutura oficial da Meta, com templates e boas práticas.</div></details>
+<details class="faq-item"><summary>Vocês ajudam na configuração? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Sim. Especialista coloca a primeira campanha no ar com você.</div></details>
+<details class="faq-item"><summary>Vocês criam minha primeira campanha? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Sim. Público, filtros e abordagem definidos juntos.</div></details>
+<details class="faq-item"><summary>Como funcionam os números virtuais? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Dedicados, monitorados, com contingência e rodízio.</div></details>
+<details class="faq-item"><summary>Posso adicionar mais números? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Sim. R$ 49,90/mês cada.</div></details>
+<details class="faq-item"><summary>Posso adicionar mais agentes? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Sim. R$ 49,90/mês cada.</div></details>
+<details class="faq-item"><summary>Posso importar minha lista? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Sim.</div></details>
+<details class="faq-item"><summary>A IA conversa com os leads? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Sim. Primeira etapa de pré-venda e qualificação.</div></details>
+<details class="faq-item"><summary>Tem teste gratuito? <span>+</span></summary><div style="padding:0 18px 16px;color:var(--muted);font-size:13px">Não. Inclui implementação e acompanhamento, por isso não há teste isolado.</div></details>
+</div>
+</div>
+</section>
+
+<section style="padding:40px 0" id="contato">
+<div class="container" style="max-width:760px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 28px;border:1px solid var(--line);border-radius:16px;background:#fff;flex-wrap:wrap">
+<span style="font-size:14px;color:var(--muted);font-weight:500">Ainda tem dúvidas? Nossa equipe está aqui para ajudar.</span>
+<a href="https://wa.me/5562984854833" class="btn" style="background:var(--primary-soft);border:1px solid rgba(1,242,147,.3);color:#087a52;font-weight:700;font-size:12px;padding:12px 20px;white-space:nowrap">Fale com um especialista →</a>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container" style="padding-top:28px;padding-bottom:24px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:28px;margin-bottom:28px">
+<div>
+<div class="logo" style="margin-bottom:12px"><img src="https://i.postimg.cc/13KdnT3T/variada-(2).png" alt="LEADSTECH" style="height:60px;width:auto"></div>
+<p style="color:var(--muted);font-size:13px;line-height:1.6">Infraestrutura completa para prospecção ativa B2B no WhatsApp. Tecnologia, números dedicados e IA em uma única operação.</p>
+<div style="display:flex;gap:10px;margin-top:16px">
+<a href="#" class="social" style="width:36px;height:36px;border-radius:10px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;transition:.2s" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="#" class="social" style="width:36px;height:36px;border-radius:10px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;transition:.2s" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+</div>
+</div>
+<div>
+<h4 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Links</h4>
+<div style="display:grid;gap:8px;font-size:13px;color:var(--muted)">
+<a href="#como-funciona" style="transition:.2s">Como funciona</a>
+<a href="#recursos" style="transition:.2s">Recursos</a>
+<a href="#preco" style="transition:.2s">Preço</a>
+<a href="#faq" style="transition:.2s">FAQ</a>
+<a href="#" style="transition:.2s">Blog</a>
+</div>
+</div>
+<div>
+<h4 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Recursos</h4>
+<div style="display:grid;gap:8px;font-size:13px;color:var(--muted)">
+<a href="#recursos" style="transition:.2s">WhatsApp Oficial</a>
+<a href="#recursos" style="transition:.2s">Prospecção B2B</a>
+<a href="#recursos" style="transition:.2s">Números Virtuais</a>
+<a href="#recursos" style="transition:.2s">Agente de IA</a>
+</div>
+</div>
+<div>
+<h4 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Contato</h4>
+<div style="display:grid;gap:8px;font-size:13px;color:var(--muted)">
+<a href="mailto:contato@leadstech.com.br">contato@leadstech.com.br</a>
+<a href="https://wa.me/5562984854833">+55 62 98485-4833</a>
+</div>
+</div>
+</div>
+<div style="border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+<div style="color:var(--muted);font-size:12px">© 2025 Leadstech. Todos os direitos reservados.</div>
+<div style="display:flex;gap:16px;color:var(--muted);font-size:12px">
+<a href="#">Política de Privacidade</a>
+<a href="#">Termos de Uso</a>
+<a href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+<div class="mobile-cta"><a href="#contato" class="btn btn-dark" style="width:100%">QUERO COMEÇAR</a></div>
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const nav=document.querySelector('.nav');
+let menuOpen=false;
+function toggleMenu(){
+ menuOpen=!menuOpen;
+ nav.style.display=menuOpen?'flex':'none';
+ if(menuOpen){nav.style.flexDirection='column';nav.style.position='absolute';nav.style.top='52px';nav.style.right='12px';nav.style.background='#fff';nav.style.border='1px solid #E8EEEA';nav.style.padding='14px';nav.style.borderRadius='14px';nav.style.boxShadow='0 12px 30px rgba(0,0,0,.1)';nav.style.zIndex='50';nav.style.minWidth='180px'}
+}
+menuBtn?.addEventListener('click',toggleMenu);
+nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(menuOpen)toggleMenu()}));
+document.addEventListener('click',e=>{if(menuOpen&&!nav.contains(e.target)&&!menuBtn.contains(e.target))toggleMenu()});
+
+document.querySelectorAll('.tl-s').forEach(btn=>{
+  btn.addEventListener('mouseenter',()=>{
+    const i=btn.dataset.step;
+    document.querySelectorAll('.tl-s').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tl-single').forEach(c=>{c.classList.remove('show');c.style.display='none'});
+    const card=document.querySelector('[data-card="'+i+'"]');
+    if(card){card.classList.add('show');card.style.display='block'}
+  });
+  btn.addEventListener('click',()=>{
+    const i=btn.dataset.step;
+    document.querySelectorAll('.tl-s').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tl-single').forEach(c=>{c.classList.remove('show');c.style.display='none'});
+    const card=document.querySelector('[data-card="'+i+'"]');
+    if(card){card.classList.add('show');card.style.display='block'}
+  });
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+ const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
+}));
+</script>
+</body>
+</html>
