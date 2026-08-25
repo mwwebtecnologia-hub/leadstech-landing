@@ -36,4 +36,10 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://leadstech.com.br/prospeccao-ativa-com-ia.html</loc>
+    <lastmod>2025-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
