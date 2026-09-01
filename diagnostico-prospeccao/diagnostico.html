@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diagnóstico da Máquina de Prospecção no WhatsApp | LeadsTech</title>
+<link rel="icon" href="https://i.postimg.cc/BvwzXwH8/12-(1)-(1).png" type="image/png">
+<meta name="description" content="Ferramenta de avaliação estratégica de infraestrutura da LeadsTech. Responda sobre sua operação e receba uma recomendação de modelo com maior aderência ao seu cenário.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://{{DOMINIO}}/diagnostico.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#01F293;--primary-dark:#00c87a;--primary-soft:#e6faf2;--primary-ring:rgba(1,242,147,.28);
+  --ink:#0a1a14;--dark:#08120d;--dark-2:#0f2018;--muted:#5a6a62;--line:#e8eeea;--surface:#f4f8f6;--white:#fff;
+  --amber:#b8860b;--amber-soft:#fff7e8;--amber-line:#f0dcb2;--shadow:0 20px 48px rgba(10,26,20,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Sora',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+.container{width:min(760px,calc(100% - 32px));margin:0 auto}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:12px;font-weight:800;font-size:14px;letter-spacing:.02em;transition:.22s;border:1px solid transparent;cursor:pointer;line-height:1}
+.btn-primary{background:var(--primary);color:var(--ink)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px var(--primary-ring)}
+.btn-primary:active{transform:translateY(0)}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:#cfe7db}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
+/* ---------- Header ---------- */
+.app-header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em}
+.brand img{height:38px;width:auto}
+.brand-title{font-size:12px;line-height:1.2;color:var(--muted)}
+.brand-title b{display:block;font-size:12px;color:var(--ink);letter-spacing:.02em}
+.app-header .back{font-size:12px;padding:10px 15px}
+
+/* ---------- Progress / top ---------- */
+.prog-wrap{padding:20px 0 6px}
+.prog-title{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;font-weight:700;margin-bottom:10px}
+.prog-title .pt{letter-spacing:.03em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+.prog-title .pc{color:var(--ink)}
+.progress-track{height:8px;border-radius:999px;background:#eaefec;overflow:hidden}
+.progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary-dark),var(--primary));width:0;transition:width .4s cubic-bezier(.4,0,.2,1)}
+
+/* ---------- Screens ---------- */
+.stage{position:relative;min-height:60vh}
+.screen{display:none;animation:fadeUp .35s ease}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---------- Question ---------- */
+.q-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--shadow);margin-top:16px}
+.q-cat{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0a8a5c;margin-bottom:10px;display:inline-flex;align-items:center;gap:8px}
+.q-cat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--primary)}
+.q-title{font-size:clamp(20px,3vw,26px);line-height:1.25;letter-spacing:-.03em;margin:0 0 22px}
+.options{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px 16px;cursor:pointer;transition:.18s;text-align:left;width:100%}
+.opt:hover{border-color:#cfe7db;transform:translateX(2px);box-shadow:0 8px 20px rgba(10,26,20,.05)}
+.opt .letter{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--muted);transition:.18s}
+.opt .opt-text{font-size:14px;font-weight:600;line-height:1.4}
+.opt.sel{border-color:var(--primary);background:var(--primary-soft);box-shadow:0 0 0 1px var(--primary) inset}
+.opt.sel .letter{background:var(--primary);border-color:var(--primary);color:var(--ink)}
+.opt.sel .opt-text{color:var(--ink)}
+.opt:active{transform:scale(.995)}
+
+/* ---------- Nav buttons ---------- */
+.actionbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px}
+.actionbar .spacer{flex:1}
+.actionbar .btn{padding:14px 24px}
+.back-link{font-size:13px;color:var(--muted);font-weight:600;background:none;border:none;cursor:pointer;padding:8px;display:inline-flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--ink)}
+.back-link[disabled]{opacity:.35;cursor:not-allowed}
+
+/* ---------- Init / payment ---------- */
+.init-card{background:var(--dark);border-radius:22px;padding:34px;color:#fff;text-align:center;position:relative;overflow:hidden;margin-top:16px}
+.init-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),transparent)}
+.init-card::after{content:"";position:absolute;inset:0;background:radial-gradient(520px 320px at 100% 0%, rgba(1,242,147,.14), transparent 55%);pointer-events:none}
+.init-inner{position:relative}
+.init-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--primary);text-transform:uppercase;margin-bottom:14px}
+.init-card h1{font-size:clamp(24px,4vw,34px);letter-spacing:-.03em;line-height:1.15;margin:0 0 10px;color:#fff}
+.init-card p{font-size:14px;color:#a8c0b6;line-height:1.7;max-width:460px;margin:0 auto 22px}
+.init-card .price{font-size:26px;font-weight:800;color:var(--primary);letter-spacing:-.03em}
+.init-card .price small{font-size:13px;color:#a8c0b6;font-weight:600;letter-spacing:0}
+.init-list{display:flex;flex-direction:column;gap:10px;text-align:left;max-width:340px;margin:22px auto 24px}
+.init-list .k{display:flex;align-items:center;gap:10px;font-size:13px;color:#c3d2ca}
+.init-list .k::before{content:"\2713";flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(1,242,147,.16);border:1px solid var(--primary-ring);display:grid;place-items:center;font-size:10px;color:var(--primary)}
+.init-secure{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#8ba09a;margin-top:14px}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.demo-note{font-size:11px;color:#6b7c76;margin-top:10px}
+
+/* ---------- Free text / lead ---------- */
+.textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:16px;font-family:inherit;font-size:14px;color:var(--ink);min-height:120px;resize:vertical;background:#fff;transition:.18s}
+.textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.textarea::placeholder{color:#9aa7a1}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.field label span{color:#c0393f}
+.input{width:100%;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-family:inherit;font-size:14px;color:var(--ink);background:#fff;transition:.18s}
+.input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.input.error{border-color:#e74c3c;background:#fff7f7}
+.field-err{font-size:12px;color:#c0393f;margin-top:6px;display:none}
+.field-err.show{display:block}
+.lead-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--shadow);margin-top:16px}
+.lead-card h2{font-size:clamp(21px,3vw,27px);letter-spacing:-.03em;margin:0 0 8px}
+.lead-card .lead-sub{font-size:14px;color:var(--muted);margin:0 0 22px}
+
+/* ---------- Result ---------- */
+.result-dash{background:var(--dark);border-radius:22px;padding:28px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-top:16px}
+.result-dash::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),transparent)}
+.result-dash .r-label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.result-title{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:0 0 10px;color:#fff}
+.result-dash .r-text{font-size:15px;color:#a8c0b6;line-height:1.7;margin:0 0 24px;font-weight:400}
+.result-dash .r-text b{color:#fff}
+.profile{margin-bottom:26px}
+.profile .p-head{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.facet{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px 15px}
+.facet small{display:block;font-size:10px;color:#a8c0b6;letter-spacing:.05em;text-transform:uppercase;margin-bottom:3px}
+.facet b{font-size:14px;color:#fff;font-weight:700}
+.facet b.hi{color:var(--primary)}
+.facet b.mid{color:#ffd166}
+.reco-box{background:var(--primary);color:var(--ink);border-radius:16px;padding:20px;margin-bottom:26px}
+.reco-box .rb-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.reco-box h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+.reco-box p{margin:0;font-size:13px;line-height:1.6;color:rgba(8,18,13,.85)}
+.section-block{margin-bottom:28px}
+.section-block .sb-head{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.reason-list{display:flex;flex-direction:column;gap:9px}
+.reason{display:flex;align-items:flex-start;gap:11px;font-size:14px;line-height:1.5;color:#d7e2dc}
+.reason::before{content:"\2713";flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(1,242,147,.14);border:1px solid var(--primary-ring);display:grid;place-items:center;font-size:11px;color:var(--primary);margin-top:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:8px 15px;font-size:12px;color:#e6efe9;font-weight:600}
+.chip::before{content:"\00b7";color:var(--primary);margin-right:6px;font-weight:800}
+
+/* ---------- Comparative ---------- */
+.cmp{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:16px}
+.cmp-table{width:100%;border-collapse:collapse}
+.cmp-table th,.cmp-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+.cmp-table th{background:var(--surface);font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.cmp-table thead th:not(:first-child){text-align:center}
+.cmp-table td:first-child{font-weight:600;color:var(--ink)}
+.cmp-table td:not(:first-child){text-align:center}
+.cmp-table tbody tr:last-child td{border-bottom:none}
+.lvl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;padding:5px 11px;border-radius:999px}
+.lv-low{background:var(--primary-soft);border:1px solid rgba(1,242,147,.3);color:#087a52}
+.lv-med{background:var(--amber-soft);border:1px solid var(--amber-line);color:var(--amber)}
+.lv-high{background:var(--ink);color:var(--primary)}
+
+/* ---------- Checklist ---------- */
+.checklist{background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 0;margin-top:16px}
+.cl-item{display:flex;align-items:center;gap:12px;padding:13px 18px;cursor:pointer;border-bottom:1px solid var(--line);font-size:14px;user-select:none}
+.cl-item:last-child{border-bottom:none}
+.cl-item:hover{background:var(--surface)}
+.cl-box{flex:0 0 auto;width:22px;height:22px;border-radius:7px;border:2px solid #cdd8d2;display:grid;place-items:center;color:transparent;transition:.18s;font-size:13px;font-weight:800}
+.cl-item.on .cl-box{background:var(--primary);border-color:var(--primary);color:var(--ink)}
+.cl-item.on span{color:var(--muted);text-decoration:line-through}
+
+/* ---------- Next step ---------- */
+.next{background:linear-gradient(135deg,var(--dark),var(--dark-2));border-radius:18px;padding:26px;color:#fff;text-align:center;margin-top:28px}
+.next .n-label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
+.next p{font-size:14px;color:#a8c0b6;line-height:1.7;margin:0 0 18px}
+.note-small{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;text-align:center}
+.restart{margin-top:22px;display:flex;justify-content:center}
+
+/* ---------- Responsive ---------- */
+@media(max-width:640px){
+  .container{width:min(760px,calc(100% - 24px))}
+  .q-card{padding:20px;margin-top:10px}
+  .opt{padding:14px 14px;gap:12px}
+  .opt-text{font-size:13px}
+  .progress-track{height:7px}
+  .profile-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .facet b{font-size:13px}
+  .result-dash{padding:22px 20px}
+  .cmp-table th,.cmp-table td{padding:11px 10px;font-size:12px}
+  .btn{padding:15px 22px}
+  .actionbar{flex-wrap:wrap}
+  .actionbar .btn{width:auto;flex:1}
+  .actionbar .back-link{flex:0 0 auto}
+  .app-header .back{display:none}
+}
+@media(max-width:480px){
+  .profile-grid{grid-template-columns:1fr}
+  .cmp-table{font-size:11px}
+  .cmp-table th,.cmp-table td{padding:10px 8px}
+  .cmp-labels span{display:block;font-size:9px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="app-header">
+  <div class="container header-inner">
+    <a href="diagnostico-prospeccao-whatsapp.html" class="brand">
+      <img src="https://i.postimg.cc/13KdnT3T/variada-(2).png" alt="LeadsTech">
+      <span class="brand-title"><b>Diagnóstico LeadsTech</b>Máquina de Prospecção</span>
+    </a>
+    <a href="diagnostico-prospeccao-whatsapp.html" class="btn btn-ghost back">← Início</a>
+  </div>
+</header>
+
+<main class="container" style="padding-bottom:56px">
+  <div class="prog-wrap" id="progWrap" style="display:none">
+    <div class="prog-title">
+      <span class="pt">Diagnóstico da Máquina de Prospecção</span>
+      <span class="pc" id="progCount"></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+  </div>
+
+  <div class="stage" id="stage"></div>
+</main>
+
+<script>
+/* =========================================================================
+   MOTOR DE DIAGNÓSTICO — LeadsTech
+   -------------------------------------------------------------------------
+   Avaliação Estratégica de Infraestrutura.
+   Experiência: iniciação (pagamento) → perguntas (16) → pergunta qualitativa
+   (opcional) → captura de lead → resultado (recomendação + comparativo +
+   checklist + próximo passo). Resultado sempre apresentado como ORIENTAÇÃO
+   ESTRATÉGICA (nunca como verdade absoluta).
+
+   NOTA DE CONFORMIDADE DE TERMOS:
+   Este fluxo é uma "avaliação" / "diagnóstico". As palavras "quiz",
+   "teste" e "questionário" são intencionalmente evitadas em toda a
+   interface e comunicação.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. ESTRUTURA DAS PERGUNTAS
+   Cada opção soma pontos a:
+     pr = SCORE_PRÓPRIO          (aderência à estrutura própria)
+     te = SCORE_TERCEIRIZAÇÃO    (aderência à infraestrutura pronta)
+     cx = SCORE_COMPLEXIDADE     (complexidade / necessidade de infraestrutura)
+   A pontuação bruta jamais é exibida ao usuário.
+   ------------------------------------------------------------------------- */
+var QUESTIONS = [
+  { id:'q1', cat:'Objetivo', short:'Objetivo', title:'Qual é o principal objetivo da sua operação de prospecção pelo WhatsApp?',
+    options:[
+      {t:'Começar a prospectar do zero', s:{pr:0,te:1,cx:0}},
+      {t:'Validar se a prospecção funciona', s:{pr:0,te:1,cx:0}},
+      {t:'Aumentar o volume de contatos', s:{pr:1,te:0,cx:2}},
+      {t:'Automatizar a operação', s:{pr:1,te:0,cx:2}},
+      {t:'Utilizar IA na prospecção e pré-venda', s:{pr:1,te:1,cx:2}},
+      {t:'Escalar a operação para um patamar maior', s:{pr:1,te:0,cx:3}},
+      {t:'Atender múltiplas operações ou clientes', s:{pr:2,te:0,cx:3}}
+    ]},
+  { id:'q2', cat:'Volume', short:'Volume', title:'Qual volume aproximado de contatos sua operação pretende trabalhar por mês?',
+    options:[
+      {t:'Até 500', s:{pr:0,te:0,cx:0}},
+      {t:'500 a 2.000', s:{pr:1,te:0,cx:1}},
+      {t:'2.000 a 10.000', s:{pr:1,te:0,cx:2}},
+      {t:'10.000 a 50.000 (alto volume de envios)', s:{pr:2,te:0,cx:3}},
+      {t:'Mais de 50.000 (disparo em massa)', s:{pr:2,te:0,cx:3}}
+    ]},
+  { id:'q17', cat:'Volume de envios', short:'Envio em massa', title:'Você pretende realizar envios em larga escala (disparo em massa) de mensagens?',
+    options:[
+      {t:'Não, priorizo menos contatos e mais qualificados', s:{pr:0,te:0,cx:0}},
+      {t:'Sim, em volume moderado', s:{pr:0,te:1,cx:1}},
+      {t:'Sim, quero alto volume de envios', s:{pr:1,te:1,cx:2}},
+      {t:'Sim, e precisarei de uma estrutura de grande escala', s:{pr:1,te:0,cx:3}}
+    ]},
+  { id:'q3', cat:'Equipe comercial', short:'Equipe', title:'Quantas pessoas atualmente participam da operação comercial?',
+    options:[
+      {t:'Somente eu', s:{pr:0,te:0,cx:0}},
+      {t:'2 a 3', s:{pr:0,te:0,cx:1}},
+      {t:'4 a 10', s:{pr:0,te:0,cx:2}},
+      {t:'11 a 30', s:{pr:1,te:0,cx:2}},
+      {t:'Mais de 30', s:{pr:1,te:0,cx:3}}
+    ]},
+  { id:'q4', cat:'Estrutura atual', short:'Estrutura atual', title:'Como está sua estrutura de WhatsApp atualmente?',
+    options:[
+      {t:'Não tenho estrutura', s:{pr:0,te:2,cx:0}},
+      {t:'Uso apenas WhatsApp Business', s:{pr:0,te:1,cx:1}},
+      {t:'Já tenho estrutura empresarial', s:{pr:1,te:0,cx:1}},
+      {t:'Já utilizo API oficial', s:{pr:1,te:0,cx:2}},
+      {t:'Já tenho API + plataforma/HUB', s:{pr:2,te:0,cx:2}},
+      {t:'Já tenho uma operação estruturada', s:{pr:2,te:0,cx:2}}
+    ]},
+  { id:'q5', cat:'Capacidade técnica', short:'Capacidade técnica', title:'Você possui alguém capaz de cuidar da parte técnica da operação?',
+    options:[
+      {t:'Não', s:{pr:0,te:3,cx:0}},
+      {t:'Tenho alguém com conhecimento básico', s:{pr:1,te:1,cx:0}},
+      {t:'Tenho profissional técnico interno', s:{pr:2,te:0,cx:1}},
+      {t:'Tenho desenvolvedor/equipe de tecnologia', s:{pr:3,te:0,cx:1}},
+      {t:'Tenho equipe dedicada ao desenvolvimento e infraestrutura', s:{pr:3,te:0,cx:2}}
+    ]},
+  { id:'q6', cat:'Tecnologia e desenvolvimento', short:'Tecnologia', title:'Como está hoje a parte de tecnologia e desenvolvimento na sua operação?',
+    options:[
+      {t:'Não temos desenvolvimento interno, e não está no plano', s:{pr:0,te:3,cx:0}},
+      {t:'Hoje usamos apenas ferramentas e soluções prontas', s:{pr:0,te:3,cx:1}},
+      {t:'O desenvolvimento interno está planejado para o futuro', s:{pr:1,te:0,cx:1}},
+      {t:'Já temos desenvolvimento/iniciativa própria em andamento', s:{pr:3,te:0,cx:2}},
+      {t:'Já temos desenvolvimento próprio estruturado', s:{pr:3,te:0,cx:2}}
+    ]},
+  { id:'q7', cat:'Investimento inicial', short:'Investimento inicial', title:'Quanto você pretende investir inicialmente para colocar sua operação em funcionamento?',
+    options:[
+      {t:'Até R$ 500', s:{pr:0,te:1,cx:0}},
+      {t:'R$ 500 a R$ 2.000', s:{pr:1,te:0,cx:0}},
+      {t:'R$ 2.000 a R$ 5.000', s:{pr:2,te:0,cx:1}},
+      {t:'R$ 5.000 a R$ 15.000', s:{pr:2,te:0,cx:2}},
+      {t:'Mais de R$ 15.000', s:{pr:3,te:0,cx:2}}
+    ]},
+  { id:'q8', cat:'Orçamento mensal', short:'Orçamento mensal', title:'Quanto você estaria disposto a investir mensalmente na infraestrutura?',
+    options:[
+      {t:'Até R$ 300', s:{pr:0,te:1,cx:0}},
+      {t:'R$ 300 a R$ 1.000', s:{pr:1,te:0,cx:1}},
+      {t:'R$ 1.000 a R$ 3.000', s:{pr:2,te:0,cx:1}},
+      {t:'R$ 3.000 a R$ 10.000', s:{pr:2,te:0,cx:2}},
+      {t:'Mais de R$ 10.000', s:{pr:3,te:0,cx:2}}
+    ]},
+  { id:'q9', cat:'Prioridade', short:'Prioridade', title:'O que é mais importante para você neste momento?',
+    options:[
+      {t:'Minimizar o investimento inicial', s:{pr:0,te:1,cx:0}},
+      {t:'Colocar a operação em funcionamento o quanto antes', s:{pr:0,te:2,cx:1}},
+      {t:'Ter autonomia de decisão sobre a operação', s:{pr:2,te:0,cx:1}},
+      {t:'Poder adaptar a operação ao meu processo', s:{pr:2,te:0,cx:2}},
+      {t:'Suportar um volume maior de contatos', s:{pr:1,te:0,cx:2}},
+      {t:'Não me preocupar com a parte técnica', s:{pr:0,te:3,cx:0}},
+      {t:'Conduzir a operação com autonomia técnica', s:{pr:2,te:0,cx:2}}
+    ]},
+  { id:'q10', cat:'Automação', short:'Automação', title:'Qual nível de automação você deseja na sua operação?',
+    options:[
+      {t:'Quero fazer praticamente tudo manualmente', s:{pr:0,te:1,cx:0}},
+      {t:'Quero algumas automações', s:{pr:0,te:0,cx:1}},
+      {t:'Quero uma operação bastante automatizada', s:{pr:1,te:0,cx:2}},
+      {t:'Quero automatizar praticamente todo o processo possível', s:{pr:1,te:0,cx:3}}
+    ]},
+  { id:'q11', cat:'Inteligência artificial', short:'IA', title:'Você pretende utilizar inteligência artificial na operação?',
+    options:[
+      {t:'Não', s:{pr:0,te:0,cx:0}},
+      {t:'Tenho interesse, mas ainda não sei como', s:{pr:0,te:1,cx:1}},
+      {t:'Quero utilizar IA para atendimento e respostas', s:{pr:0,te:0,cx:1}},
+      {t:'Quero utilizar IA para qualificação de leads', s:{pr:1,te:0,cx:2}},
+      {t:'Quero utilizar IA em várias etapas da operação', s:{pr:1,te:0,cx:3}}
+    ]},
+  { id:'q12', cat:'Dados', short:'Dados', title:'Como você pretende obter os contatos que serão trabalhados?',
+    options:[
+      {t:'Já possuo minha própria base', s:{pr:1,te:0,cx:1}},
+      {t:'Pretendo construir minha própria base', s:{pr:1,te:0,cx:1}},
+      {t:'Pretendo utilizar uma base/fornecedor externo', s:{pr:0,te:2,cx:1}},
+      {t:'Ainda não sei', s:{pr:0,te:1,cx:0}},
+      {t:'Quero integrar uma base de empresas diretamente à operação', s:{pr:1,te:0,cx:2}}
+    ]},
+  { id:'q13', cat:'Responsabilidade operacional', short:'Responsável', title:'Quem ficará responsável pela infraestrutura?',
+    options:[
+      {t:'Eu mesmo', s:{pr:1,te:0,cx:1}},
+      {t:'Minha equipe comercial', s:{pr:0,te:0,cx:1}},
+      {t:'Uma pessoa operacional', s:{pr:1,te:0,cx:1}},
+      {t:'Minha equipe técnica', s:{pr:2,te:0,cx:1}},
+      {t:'Um fornecedor externo', s:{pr:0,te:3,cx:0}},
+      {t:'Ainda não sei', s:{pr:0,te:1,cx:0}}
+    ]},
+  { id:'q14', cat:'Velocidade', short:'Velocidade', title:'Em quanto tempo você gostaria de colocar sua operação em funcionamento?',
+    options:[
+      {t:'Quero começar imediatamente', s:{pr:0,te:2,cx:1}},
+      {t:'Nos próximos 7 dias', s:{pr:0,te:2,cx:1}},
+      {t:'Nos próximos 30 dias', s:{pr:1,te:1,cx:1}},
+      {t:'Posso levar alguns meses', s:{pr:1,te:0,cx:1}},
+      {t:'Não tenho prazo definido', s:{pr:0,te:0,cx:0}}
+    ]},
+  { id:'q15', cat:'Controle', short:'Controle', title:'Quanto controle você deseja ter sobre sua infraestrutura?',
+    options:[
+      {t:'Não faço questão de controlar a parte técnica', s:{pr:0,te:3,cx:0}},
+      {t:'Quero controlar apenas a operação comercial', s:{pr:1,te:1,cx:0}},
+      {t:'Quero algum controle técnico', s:{pr:2,te:0,cx:1}},
+      {t:'Quero controlar toda a infraestrutura', s:{pr:3,te:0,cx:1}},
+      {t:'Quero administrar toda a infraestrutura com autonomia total', s:{pr:3,te:0,cx:2}}
+    ]},
+  { id:'q16', cat:'Complexidade', short:'Complexidade', title:'Como você imagina sua operação nos próximos 12 meses?',
+    options:[
+      {t:'Pequena operação para validar', s:{pr:0,te:0,cx:0}},
+      {t:'Operação pequena/média', s:{pr:0,te:0,cx:1}},
+      {t:'Operação em crescimento', s:{pr:1,te:0,cx:2}},
+      {t:'Operação de alta escala', s:{pr:1,te:0,cx:3}},
+      {t:'A operação deve atender múltiplas operações ou clientes', s:{pr:3,te:0,cx:3}}
+    ]}
+];
+
+/* Máximos calculados dinamicamente a partir das perguntas (robusto a inclusões). */
+var MAX_PR = 0, MAX_TE = 0, MAX_CX = 0;
+QUESTIONS.forEach(function(q){
+  var m = {pr:0,te:0,cx:0};
+  q.options.forEach(function(o){
+    if(o.s.pr>m.pr) m.pr=o.s.pr;
+    if(o.s.te>m.te) m.te=o.s.te;
+    if(o.s.cx>m.cx) m.cx=o.s.cx;
+  });
+  MAX_PR += m.pr; MAX_TE += m.te; MAX_CX += m.cx;
+});
+
+/* -------------------------------------------------------------------------
+   2. ESTADO (persistência em localStorage)
+   ------------------------------------------------------------------------- */
+var STORAGE_KEY = 'leadstech_diag_v1';
+var state = { paid:false, idx:0, answers:{}, free:'', contact:null, checklist:{}, result:null, scores:null, completed:false, date:null };
+
+function save(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){} }
+function load(){ try{ var p = localStorage.getItem(STORAGE_KEY); if(p){ state = JSON.parse(p); } }catch(e){} }
+function resetState(){
+  state = { paid:false, idx:0, answers:{}, free:'', contact:null, checklist:{}, result:null, scores:null, completed:false, date:null };
+  save();
+}
+
+/* -------------------------------------------------------------------------
+   3. MOTOR DE PONTUAÇÃO
+   ------------------------------------------------------------------------- */
+function computeScores(){
+  var pr=0, te=0, cx=0;
+  QUESTIONS.forEach(function(q){
+    var a = state.answers[q.id];
+    if(a==null || a===undefined) return;
+    var o = q.options[a];
+    if(!o) return;
+    pr += o.s.pr; te += o.s.te; cx += o.s.cx;
+  });
+  return { pr:pr, te:te, cx:cx, prN:pr/MAX_PR, teN:te/MAX_TE, cxN:cx/MAX_CX };
+}
+
+function hasTechnicalAbility(){
+  var a = state.answers;
+  return (a.q5>=2) || (a.q6>=3) || (a.q13===3) || (a.q16===4);
+}
+
+function computeResult(scores){
+  var a = state.answers;
+  var volLow = (a.q2==null)?false:(a.q2<=1);
+  var autoLow = (a.q10==null)?false:(a.q10<=1);
+  var initObj = (a.q1==null)?false:(a.q1<=1);
+  var massIntent = (a.q17!=null && a.q17>=2);
+  var cxLow = scores.cxN < 0.30;
+
+  /* Baixa complexidade + volume + automação + objetivo inicial → validação */
+  if(initObj && volLow && autoLow && cxLow && !massIntent) return 'validacao';
+  if(volLow && autoLow && scores.cxN < 0.18 && !massIntent) return 'validacao';
+
+  var margin = 0.12;
+  if(scores.prN - scores.teN > margin){
+    if(hasTechnicalAbility()) return 'propria';
+    return 'hibrido';
+  }
+  if(scores.teN - scores.prN > margin) return 'pronta';
+  return 'hibrido';
+}
+
+/* -------------------------------------------------------------------------
+   4. APRESENTAÇÃO DO RESULTADO
+   ------------------------------------------------------------------------- */
+var RESULT_META = {
+  propria: {
+    emoji:'\uD83C\uDFD7\uFE0F', label:'Estrutura Própria', icon:'\uD83C\uDFD7\uFE0F',
+    title:'ESTRUTURA PRÓPRIA',
+    text:'Com base nas informações fornecidas, seu cenário apresenta maior aderência a uma estrutura própria.',
+    cta:'QUERO CONHECER O PRÓXIMO PASSO \u2192',
+    reasons:'propria'
+  },
+  pronta: {
+    emoji:'\u26A1', label:'Infraestrutura Pronta', icon:'\u26A1',
+    title:'INFRAESTRUTURA PRONTA',
+    text:'Com base nas informações fornecidas, seu cenário apresenta maior aderência à utilização de uma infraestrutura pronta.',
+    cta:'CONHECER UMA INFRAESTRUTURA PRONTA \u2192',
+    reasons:'pronta'
+  },
+  hibrido: {
+    emoji:'\uD83D\uDD04', label:'Modelo Híbrido', icon:'\uD83D\uDD04',
+    title:'MODELO HÍBRIDO',
+    text:'Seu cenário apresenta características que podem justificar uma combinação entre recursos próprios e infraestrutura terceirizada.',
+    cta:'VER POSSIBILIDADES PARA MINHA OPERAÇÃO \u2192',
+    reasons:'hibrido'
+  },
+  validacao: {
+    emoji:'\uD83D\uDFE2', label:'Fase de Validação', icon:'\uD83D\uDFE2',
+    title:'FASE DE VALIDAÇÃO',
+    text:'Seu cenário ainda não indica necessidade de uma infraestrutura altamente complexa.',
+    cta:'VER MEUS PRÓXIMOS PASSOS \u2192',
+    reasons:'validacao'
+  }
+};
+
+function getReasons(type){
+  var a = state.answers, r = [];
+  if(type==='propria'){
+    if(a.q5>=2) r.push('Você possui capacidade técnica interna');
+    if(a.q6>=3) r.push('Você conta com desenvolvimento próprio de tecnologia');
+    if(a.q15>=3) r.push('Você busca autonomia total sobre a infraestrutura');
+    if(a.q9===2||a.q9===3||a.q9===6) r.push('Necessidade de maior controle e personalização');
+    if(a.q16===4) r.push('Você precisa atender múltiplas operações ou clientes');
+    if(a.q2>=2||a.q16>=3) r.push('O volume indica necessidade de uma estrutura escalável');
+    if(a.q7>=2||a.q8>=2) r.push('Orçamento compatível com uma estrutura própria');
+    if(a.q1===6) r.push('Operação voltada a atender múltiplas frentes');
+    if(a.q17===3) r.push('Escala de envio em massa exige uma estrutura robusta');
+  } else if(type==='pronta'){
+    if(a.q5<=1) r.push('Baixa capacidade técnica interna para operar a infraestrutura');
+    if(a.q6<=1) r.push('Preferência por ferramentas prontas');
+    if(a.q14<=1) r.push('Busca por colocar a operação em funcionamento rapidamente');
+    if(a.q15<=1||a.q9===5) r.push('Desejo de reduzir a complexidade técnica do dia a dia');
+    if(a.q10>=2||(a.q1>=2&&a.q1<=4)) r.push('Necessidade de automação na operação');
+    if(a.q9===5||a.q13===4) r.push('Foco em manter a equipe no comercial');
+    if(a.q17>=2) r.push('Necessidade de envios em larga escala (disparo em massa)');
+  } else if(type==='hibrido'){
+    if(a.q15===2) r.push('Você busca equilíbrio entre controle e conveniência');
+    if(a.q9===2||a.q9===3) r.push('Quer manter voz ativa sobre a operação sem assumir todo o peso');
+    if(a.q16===4&&a.q5<=1) r.push('Muita ambição de escala, mas capacidade técnica ainda limitada');
+    if(a.q13===3) r.push('Tem equipe técnica para os componentes estratégicos');
+    if(a.q7>=2||a.q8>=2) r.push('Orçamento que permite combinar recursos próprios e terceirizados');
+    if(a.q11>=3) r.push('Necessidade de IA que pode ser atendida em parte no modelo terceirizado');
+  } else {
+    if(a.q1===0||a.q1===1) r.push('Operação em estágio inicial');
+    if(a.q2<=1) r.push('Volume ainda em validação');
+    if(a.q10<=1) r.push('Automação ainda em nível manual');
+    if(a.q16<=1) r.push('Operação projetada para um momento inicial');
+    if(a.q15===0) r.push('Sem necessidade de controle técnico neste momento');
+  }
+  return r.slice(0,5);
+}
+
+function getComponents(type){
+  if(type==='propria') return ['API oficial','Estrutura empresarial','Números','Dados','Hub/CRM','Automação','IA','Desenvolvimento','Monitoramento e manutenção'];
+  if(type==='pronta') return ['WhatsApp/API oficial','Números','Base de dados','Hub/CRM','Automação','IA','Gestão da operação'];
+  if(type==='hibrido') return ['API oficial','Números','Base de dados','Hub/CRM','Automação','IA','Processo comercial'];
+  return ['WhatsApp/API oficial (mínimo)','Números (básico)','Base de contatos','Gestão simples','Processo comercial'];
+}
+
+/* Perfil da operação — faceta a partir das respostas reais */
+function shortLabel(qid, idx){ return QUESTIONS.filter(function(q){return q.id===qid;})[0].options[idx].t; }
+function autoLevel(i){ return i<=1?'Baixa':(i===2?'Média':'Alta'); }
+function iaLevel(i){ return i===0?'Baixa':(i<=2?'Média':'Alta'); }
+function techLevel(i){ return i<=1?'Baixa':(i===2?'Média':'Alta'); }
+function objShort(i){ return ['Começar','Validar','Aumentar volume','Automatizar','IA na pré-venda','Escalar','Múltiplos clientes'][i]; }
+
+function getProfile(){
+  var a = state.answers, s = state.scores;
+  var cxTxt = s.cxN<0.33?'Baixa':(s.cxN<0.66?'Média':'Alta');
+  return [
+    { k:'Seu principal objetivo', v:objShort(a.q1) },
+    { k:'Volume estimado', v:shortLabel('q2',a.q2) },
+    { k:'Complexidade da operação', v:cxTxt, cls: s.cxN>=0.66?'hi':(s.cxN>=0.33?'mid':'') },
+    { k:'Necessidade de automação', v:autoLevel(a.q10), cls: a.q10>=3?'hi':(a.q10===2?'mid':'') },
+    { k:'Necessidade de IA', v:iaLevel(a.q11), cls: a.q11>=4?'hi':(a.q11>=2?'mid':'') },
+    { k:'Capacidade técnica', v:techLevel(a.q5), cls: a.q5>=3?'hi':(a.q5===2?'mid':'') },
+    { k:'Envio em massa', v:shortLabel('q17',a.q17), cls: a.q17>=3?'hi':(a.q17===2?'mid':'') }
+  ];
+}
+
+/* Comparativo personalizado (MONTE × CONTRATE) */
+function level(low, med, high){ return function(v){ return v===0?low:(v===1?med:high); }; }
+function buildCompareMeta(){
+  var a = state.answers;
+  var budget = a.q7, m = a.q8, vel = a.q14, cap = a.q5, vol = a.q2, comp = a.q16, pers = a.q9;
+  var rows = [];
+  rows.push({k:'Investimento inicial', own: budget<=1?'Alto':'Médio', ready: budget<=1?'Baixo':(budget===2?'Médio':'Médio')});
+  rows.push({k:'Complexidade', own: cap<=1?'Alto':'Médio', ready:'Baixo'});
+  rows.push({k:'Controle', own:'Alto', ready:'Baixo'});
+  rows.push({k:'Velocidade', own:'Baixo', ready: vel<=1?'Alto':'Médio'});
+  rows.push({k:'Conhecimento técnico', own:'Alto', ready: cap<=1?'Baixo':'Médio'});
+  rows.push({k:'Personalização', own:'Alto', ready: pers>=3?'Médio':'Baixo'});
+  rows.push({k:'Manutenção', own:'Alto', ready:'Baixo'});
+  rows.push({k:'Escalabilidade', own: (vol>=2||comp>=3)?'Alto':'Médio', ready:(comp>=3)?'Médio':'Baixo'});
+  return rows;
+}
+
+/* -------------------------------------------------------------------------
+   5. CHECKLIST PERSONALIZADO (baseado nas respostas reais)
+   ------------------------------------------------------------------------- */
+function buildChecklist(){
+  var a = state.answers;
+  var items = [
+    { id:'arquitetura', label:'Definir arquitetura', when:true },
+    { id:'api', label:'Avaliar API oficial', when:true },
+    { id:'empresarial', label:'Definir estrutura empresarial', when:(a.q4!=null&&a.q4<2) },
+    { id:'numeros', label:'Definir números dedicados', when:true },
+    { id:'dados', label:'Escolher fonte de dados', when:(a.q12!=null&&a.q12!==0) },
+    { id:'crm', label:'Definir Hub/CRM', when:(a.q4!=null&&a.q4<4) },
+    { id:'automacao', label:'Planejar automação', when:(a.q10!=null&&a.q10>0) },
+    { id:'ia', label:'Definir aplicação de IA', when:(a.q11!=null&&a.q11>0) },
+    { id:'processo', label:'Definir processo comercial', when:(a.q3!=null&&a.q3<=1) },
+    { id:'custos', label:'Estimar custos', when:(a.q7!=null&&(a.q7<=1||a.q8<=1)) },
+    { id:'responsavel', label:'Definir responsável técnico', when:(a.q13!=null&&a.q13<3) }
+  ];
+  return items.filter(function(i){ return i.when; });
+}
+
+/* Próximo passo por tipo de resultado */
+function nextStepInfo(type){
+  if(type==='propria') return {
+    label:'Próximo passo',
+    text:'Se você quer construir sua própria operação, o próximo passo é transformar este diagnóstico em uma arquitetura prática.',
+    cta:'CONHECER A SOLUÇÃO DE IMPLEMENTAÇÃO \u2192'
+  };
+  if(type==='pronta') return {
+    label:'Próximo passo',
+    text:'Se você prefere não assumir a complexidade técnica, o próximo passo é conhecer uma infraestrutura já preparada para esse tipo de operação.',
+    cta:'CONHECER A INFRAESTRUTURA LEADSTECH \u2192'
+  };
+  if(type==='hibrido') return {
+    label:'Próximo passo',
+    text:'Seu cenário pode se beneficiar de uma combinação entre estrutura própria e recursos terceirizados.',
+    cta:'VER POSSIBILIDADES \u2192'
+  };
+  return {
+    label:'Próximo passo',
+    text:'Seu próximo passo deve ser validar a operação antes de investir em uma infraestrutura complexa.',
+    cta:'VER MEUS PRÓXIMOS PASSOS \u2192'
+  };
+}
+
+/* -------------------------------------------------------------------------
+   6. HELPERS DE UI
+   ------------------------------------------------------------------------- */
+function esc(s){ return String(s==null?'':s).replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function el(id){ return document.getElementById(id); }
+function lvlBadge(v){
+  var c = v==='Baixo'?'lv-low':(v==='Médio'?'lv-med':'lv-high');
+  return '<span class="lvl '+c+'">'+v+'</span>';
+}
+function setProgress(current, total){
+  el('progWrap').style.display='block';
+  el('progCount').textContent = 'Etapa '+(current+1)+' de '+total;
+  var p = Math.round(((current+1)/total)*100);
+  el('progFill').style.width = p+'%';
+}
+function hideProgress(){ el('progWrap').style.display='none'; }
+
+/* -------------------------------------------------------------------------
+   7. TELAS
+   ------------------------------------------------------------------------- */
+function stageHTML(html){ el('stage').innerHTML = html; return el('stage').firstElementChild; }
+
+/* ---------- Tela de pagamento / liberação ---------- */
+function showInit(){
+  hideProgress();
+  var s = stageHTML(
+    '<div class="screen active"><div class="init-card"><div class="init-inner">'+
+      '<div class="init-tag">\u26A1 Avaliação Estratégica de Infraestrutura</div>'+
+      '<h1>Seu diagnóstico está pronto para ser iniciado.</h1>'+
+      '<p>Libere sua avaliação personalizada e receba uma recomendação de modelo com maior aderência ao cenário da sua operação.</p>'+
+      '<div class="init-list">'+
+        '<span class="k">Diagnóstico personalizado</span>'+
+        '<span class="k">Recomendação de modelo</span>'+
+        '<span class="k">Comparativo e checklist</span>'+
+        '<span class="k">Próximo passo orientado</span>'+
+      '</div>'+
+      '<div class="price">R$ 9,90 <small>· pagamento único</small></div>'+
+      '<div style="margin-top:22px"><button class="btn btn-primary btn-block" id="btnPay" style="font-size:15px;padding:18px">LIBERAR MEU DIAGNÓSTICO — R$ 9,90</button></div>'+
+      '<div class="init-secure">\uD83D\uDD12 Pagamento seguro &nbsp;·&nbsp; Acesso digital após confirmação</div>'+
+      '<div class="demo-note" id="payNote" style="display:none">Conectando ao pagamento seguro...</div>'+
+    '</div></div></div>'
+  );
+  el('btnPay').addEventListener('click', function(){ onPayClick(); });
+}
+
+function onPayClick(){
+  var btn = el('btnPay');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Processando...';
+  el('payNote').style.display='block';
+  processPayment().then(function(){
+    state.paid = true; save();
+    goQuestion(0);
+  }).catch(function(){
+    btn.disabled = false;
+    btn.textContent = 'LIBERAR MEU DIAGNÓSTICO — R$ 9,90';
+    el('payNote').textContent = 'Não foi possível confirmar. Tente novamente.';
+  });
+}
+
+/* ---------- Tela de pergunta ---------- */
+function showQuestion(i){
+  var q = QUESTIONS[i];
+  setProgress(i, QUESTIONS.length);
+  var letters = 'ABCDEFGH'.split('');
+  var selected = state.answers[q.id];
+  var opts = q.options.map(function(o, idx){
+    var sel = (selected===idx)?' sel':'';
+    return '<button type="button" class="opt'+sel+'" data-i="'+idx+'">'+
+      '<span class="letter">'+letters[idx]+'</span>'+
+      '<span class="opt-text">'+esc(o.t)+'</span></button>';
+  }).join('');
+  var s = stageHTML(
+    '<div class="screen active"><div class="q-card">'+
+      '<div class="q-cat">'+esc(q.cat)+'</div>'+
+      '<h2 class="q-title">'+esc(q.title)+'</h2>'+
+      '<div class="options">'+opts+'</div>'+
+    '</div>'+
+    '<div class="actionbar">'+
+      '<button type="button" class="back-link" id="btnPrev">\u2190 Voltar</button>'+
+      '<span class="spacer"></span>'+
+      '<span class="spacer"></span>'+
+      '<button type="button" class="btn btn-primary" id="btnNext" '+(selected==null?'disabled':'')+'>'+
+        (i===QUESTIONS.length-1?'Continuar':'Próxima')+' \u2192'+
+      '</button>'+
+    '</div></div>'
+  );
+  var lasts = s.querySelectorAll('.opt');
+  lasts.forEach(function(b){
+    b.addEventListener('click', function(){
+      lasts.forEach(function(x){ x.classList.remove('sel'); });
+      b.classList.add('sel');
+      state.answers[q.id] = parseInt(b.getAttribute('data-i'),10);
+      save();
+      el('btnNext').disabled = false;
+    });
+  });
+  el('btnNext').addEventListener('click', function(){ nextFromQuestion(i); });
+  var pv = el('btnPrev'); pv.disabled = (i===0);
+  pv.addEventListener('click', function(){ goQuestion(i-1); });
+}
+function nextFromQuestion(i){
+  if(state.answers[QUESTIONS[i].id]==null) return;
+  if(i < QUESTIONS.length-1){ goQuestion(i+1); }
+  else { showQualitative(); }
+}
+
+/* ---------- Tela qualitativa (opcional) ---------- */
+function showQualitative(){
+  hideProgress();
+  var s = stageHTML(
+    '<div class="screen active"><div class="q-card">'+
+      '<div class="q-cat">Opcional</div>'+
+      '<h2 class="q-title">Em uma frase, o que você mais deseja resolver na sua operação de prospecção?</h2>'+
+      '<textarea class="textarea" id="freeInput" placeholder="Ex.: entender se devo investir em estrutura própria antes de escalar..."></textarea>'+
+    '</div>'+
+    '<div class="actionbar">'+
+      '<button type="button" class="back-link" id="btnPrev">\u2190 Voltar</button>'+
+      '<span class="spacer"></span>'+
+      '<button type="button" class="back-link" id="btnSkip" style="color:var(--muted)">Pular</button>'+
+      '<button type="button" class="btn btn-primary" id="btnNext">Continuar \u2192</button>'+
+    '</div></div>'
+  );
+  el('freeInput').value = state.free||'';
+  el('btnPrev').addEventListener('click', function(){ goQuestion(QUESTIONS.length-1); });
+  el('btnNext').addEventListener('click', function(){ state.free = el('freeInput').value.trim(); save(); showLead(); });
+  el('btnSkip').addEventListener('click', function(){ state.free = ''; save(); showLead(); });
+}
+
+/* ---------- Tela de captura de lead ---------- */
+function showLead(){
+  hideProgress();
+  var c = state.contact||{};
+  var s = stageHTML(
+    '<div class="screen active"><div class="lead-card">'+
+      '<h2>Seu diagnóstico está quase pronto.</h2>'+
+      '<p class="lead-sub">Para liberar e salvar seu diagnóstico, informe seus dados.</p>'+
+      '<div class="field"><label>Nome <span>*</span></label><input class="input" id="fName" placeholder="Seu nome" value="'+esc(c.name||'')+'"><div class="field-err" id="eName">Informe seu nome.</div></div>'+
+      '<div class="field"><label>E-mail <span>*</span></label><input class="input" id="fEmail" type="email" placeholder="voce@empresa.com" value="'+esc(c.email||'')+'"><div class="field-err" id="eEmail">Informe um e-mail válido.</div></div>'+
+      '<div class="field"><label>WhatsApp <span>*</span></label><input class="input" id="fPhone" placeholder="(00) 00000-0000" value="'+esc(c.phone||'')+'"><div class="field-err" id="ePhone">Informe um WhatsApp válido.</div></div>'+
+      '<div class="field"><label>Empresa</label><input class="input" id="fCompany" placeholder="Nome da empresa" value="'+esc(c.company||'')+'"></div>'+
+      '<div class="actionbar" style="margin-top:6px">'+
+        '<button type="button" class="back-link" id="btnPrev">\u2190 Voltar</button>'+
+        '<span class="spacer"></span>'+
+        '<button type="button" class="btn btn-primary" id="btnSubmit">GERAR MEU RESULTADO \u2192</button>'+
+      '</div>'+
+    '</div></div>'
+  );
+  el('btnPrev').addEventListener('click', function(){ showQualitative(); });
+  el('btnSubmit').addEventListener('click', function(){ submitLead(); });
+  function err(id, show){ var e = el(id); e.classList.toggle('show', !!show); if(show){ el(e.getAttribute('data-for')).classList.add('error'); } }
+  ['fName','fEmail','fPhone'].forEach(function(id){
+    el(id).addEventListener('input', function(){ this.classList.remove('error'); var e = el(id.replace('f','e')); if(e) e.classList.remove('show'); });
+  });
+  function submitLead(){
+    var name = el('fName').value.trim(), email = el('fEmail').value.trim(), phone = el('fPhone').value.trim(), company = el('fCompany').value.trim();
+    var okName = name.length>=2;
+    var okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var okPhone = (phone.replace(/\D/g,'').length)>=10;
+    el('eName').classList.toggle('show', !okName); el('fName').classList.toggle('error', !okName);
+    el('eEmail').classList.toggle('show', !okEmail); el('fEmail').classList.toggle('error', !okEmail);
+    el('ePhone').classList.toggle('show', !okPhone); el('fPhone').classList.toggle('error', !okPhone);
+    if(!okName||!okEmail||!okPhone) return;
+    state.contact = { name:name, email:email, phone:phone, company:company };
+    state.date = new Date().toISOString();
+    state.scores = computeScores();
+    state.result = computeResult(state.scores);
+    state.completed = true;
+    save();
+    submitDiagnosis(buildPayload());
+    showResult();
+  }
+}
+
+/* ---------- Resultado ---------- */
+function showResult(){
+  hideProgress();
+  var type = state.result || computeResult(state.scores||computeScores());
+  var meta = RESULT_META[type];
+  var reasons = getReasons(type);
+  var components = getComponents(type);
+  var profile = getProfile();
+  var rows = buildCompareMeta();
+  var next = nextStepInfo(type);
+  var checklist = buildChecklist();
+
+  var profileHtml = profile.map(function(f){
+    var cls = f.cls?(' '+f.cls):'';
+    return '<div class="facet"><small>'+esc(f.k)+'</small><b class="'+cls+'">'+esc(f.v)+'</b></div>';
+  }).join('');
+
+  var reasonsHtml = reasons.map(function(r){ return '<div class="reason">'+esc(r)+'</div>'; }).join('');
+  var chipsHtml = components.map(function(c){ return '<span class="chip">'+esc(c)+'</span>'; }).join('');
+
+  var cmpHtml = rows.map(function(r){
+    return '<tr><td>'+esc(r.k)+'</td><td>'+lvlBadge(r.own)+'</td><td>'+lvlBadge(r.ready)+'</td></tr>';
+  }).join('');
+
+  var clHtml = checklist.map(function(i){
+    var on = state.checklist[i.id]?' on':'';
+    return '<div class="cl-item'+on+'" data-id="'+i.id+'"><span class="cl-box">\u2713</span><span>'+esc(i.label)+'</span></div>';
+  }).join('');
+
+  var freeHtml = (state.free)? ('<div class="note-small" style="text-align:left;margin-top:14px;color:#a8c0b6;font-size:13px"><b style="color:#fff">Seu principal objetivo informado:</b> “'+esc(state.free)+'”</div>') : '';
+
+  var validSub = '';
+  if(type==='validacao') validSub = '<p style="font-size:13.5px;color:#a8c0b6;line-height:1.7;margin:0 0 18px">Antes de investir em uma arquitetura robusta, pode fazer sentido validar sua operação, entender seu volume real e identificar quais componentes serão realmente necessários.</p>';
+  if(type==='hibrido') validSub = '<p style="font-size:13.5px;color:#a8c0b6;line-height:1.7;margin:0 0 18px">Você pode manter internamente os componentes estratégicos e terceirizar os elementos que aumentariam a complexidade operacional.</p>';
+
+  stageHTML(
+    '<div class="screen active">'+
+
+      '<div class="result-dash">'+
+        '<div class="r-label">Seu diagnóstico está pronto</div>'+
+        '<div class="result-title">'+meta.icon+' '+meta.title+'</div>'+
+        '<p class="r-text">'+esc(meta.text)+'</p>'+
+        validSub+
+        '<div class="profile">'+
+          '<div class="p-head">Perfil da sua operação</div>'+
+          '<div class="profile-grid">'+profileHtml+'</div>'+
+        '</div>'+freeHtml+
+      '</div>'+
+
+      '<div class="section-block" style="margin-top:28px"><div class="sb-head">Por que chegamos a essa recomendação?</div>'+
+        '<div class="reason-list">'+reasonsHtml+'</div>'+
+      '</div>'+
+
+      '<div class="section-block"><div class="sb-head">'+(type==='pronta'?'Componentes que sua solução deve considerar':'Componentes que você provavelmente precisará considerar')+'</div>'+
+        '<div class="chips">'+chipsHtml+'</div>'+
+      '</div>'+
+
+      '<div class="section-block"><div class="sb-head">Monte \u00D7 Contrate</div>'+
+        '<p class="note-small" style="text-align:left;margin:0 0 8px;font-size:12px">Comparativo orientado ao seu perfil. Nenhum valor monetário foi estimado, apenas níveis de indicação.</p>'+
+        '<div class="cmp"><table class="cmp-table"><thead><tr><th>Categoria</th><th>MONTE</th><th>CONTRATE</th></tr></thead><tbody>'+cmpHtml+'</tbody></table></div>'+
+      '</div>'+
+
+      '<div class="section-block"><div class="sb-head">Seu checklist inicial</div>'+
+        '<div class="checklist">'+clHtml+'</div>'+
+        '<p class="note-small" style="text-align:left">Toque nos itens para marcar o que você já avançou ou pretende priorizar.</p>'+
+      '</div>'+
+
+      '<div class="next"><div class="n-label">'+esc(next.label)+'</div><p>'+esc(next.text)+'</p>'+
+        '<a href="#" class="btn btn-primary">'+esc(next.cta)+'</a>'+
+      '</div>'+
+
+      '<div class="restart"><button type="button" class="btn btn-ghost" id="btnRestart">\uD83D\uDD01 Refazer o diagnóstico</button></div>'+
+      '<p class="note-small">Esta é uma orientação estratégica baseada nas informações fornecidas e não representa garantia de resultado comercial.</p>'+
+    '</div>'
+  );
+
+  document.querySelectorAll('.cl-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      var id = item.getAttribute('data-id');
+      state.checklist[id] = !state.checklist[id];
+      item.classList.toggle('on', state.checklist[id]);
+      save();
+    });
+  });
+  el('btnRestart').addEventListener('click', function(){
+    if(confirm('Deseja refazer o diagnóstico? Suas respostas atuais serão substituídas.')){ resetState(); showInit(); }
+  });
+}
+
+/* -------------------------------------------------------------------------
+   8. NAVEGAÇÃO
+   ------------------------------------------------------------------------- */
+function goQuestion(i){
+  if(i<0||i>=QUESTIONS.length) return;
+  state.idx = i; save();
+  showQuestion(i);
+}
+
+/* -------------------------------------------------------------------------
+   9. PLACEHOLDERS DE INTEGRAÇÃO
+   ------------------------------------------------------------------------- */
+
+/* ========================================================================
+   processPayment() — INTEGRAÇÃO COM GATEWAY DE PAGAMENTO (PLACEHOLDER)
+   ------------------------------------------------------------------------
+   ATENÇÃO: Nenhum gateway real é implementado aqui. Esta função foi deixada
+   claramente identificada para a futura integração real (Mercado Pago,
+   Stripe, PagSeguro, Hotmart, etc.).
+
+   Integração real:
+   1. Criar uma sessão/checkout no gateway (enviar dados de compra: produto
+      "Diagnóstico da Máquina de Prospecção no WhatsApp", valor R$ 9,90);
+   2. Redirecionar o cliente para o ambiente de pagamento;
+   3. Aguardar a confirmação (return_url / webhook / callback);
+   4. Ao confirmar, chamar liberarAcesso() para dar acesso ao diagnóstico.
+
+   Hoje este stub resolve como sucesso para permitir testar o fluxo.
+   ======================================================================== */
+function processPayment(){
+  return new Promise(function(resolve){
+    console.log('[LeadsTech] processPayment: placeholder de gateway. Integração real pendente.');
+    /* Ao integrar, remova o setTimeout e resolva apenas após a confirmação real. */
+    setTimeout(function(){ resolve(true); }, 800);
+  });
+}
+
+/* ========================================================================
+   submitDiagnosis(payload) — INTEGRAÇÃO COM CRM/API (PLACEHOLDER)
+   ------------------------------------------------------------------------
+   ATENÇÃO: Nenhuma API real é chamada aqui. Ao conectar o backend, envie o
+   payload via fetch() para o endpoint da sua API (ex.: POST /diagnostics).
+   Estrutura já preparada e documentada para posterior integração com CRM
+   e painel de análise (quantitativo de diagnósticos, distribuição de
+   resultados, principais objetivos, volumes, capacidade técnica etc.).
+   ======================================================================== */
+function submitDiagnosis(payload){
+  console.log('[LeadsTech] submitDiagnosis: placeholder de integração com CRM/API.');
+  console.log('[LeadsTech] payload:', payload);
+  try{ localStorage.setItem('leadstech_diag_last_payload', JSON.stringify(payload)); }catch(e){}
+}
+
+/* Payload estruturado (pronto para administração/análise comercial). */
+function buildPayload(){
+  return {
+    date: state.date,
+    paid: state.paid,
+    contact: state.contact,
+    result: state.result,
+    scores: { estruturaPropria: state.scores.pr, terceirizacao: state.scores.te, complexidade: state.scores.cx },
+    normalized: { propria: +state.scores.prN.toFixed(3), terceirizacao: +state.scores.teN.toFixed(3), complexidade: +state.scores.cxN.toFixed(3) },
+    answers: state.answers,
+    qualitative: state.free,
+    profile: {
+      objetivo: objShort(state.answers.q1),
+      volume: shortLabel('q2', state.answers.q2),
+      equipe: shortLabel('q3', state.answers.q3),
+      estruturaAtual: shortLabel('q4', state.answers.q4),
+      capacidadeTecnica: shortLabel('q5', state.answers.q5),
+      investimentoInicial: shortLabel('q7', state.answers.q7),
+      orcamentoMensal: shortLabel('q8', state.answers.q8),
+      automacao: shortLabel('q10', state.answers.q10),
+      ia: shortLabel('q11', state.answers.q11),
+      envioMassa: shortLabel('q17', state.answers.q17)
+    }
+  };
+}
+
+/* -------------------------------------------------------------------------
+   10. INICIALIZAÇÃO
+   ------------------------------------------------------------------------- */
+load();
+if(state.completed){
+  if(!state.scores){ state.scores = computeScores(); }
+  if(!state.result){ state.result = computeResult(state.scores); }
+  showResult();
+} else if(state.paid){
+  if(state.idx>=QUESTIONS.length){ showQualitative(); }
+  else { showQuestion(state.idx); }
+} else {
+  showInit();
+}
+</script>
+</body>
+</html>
