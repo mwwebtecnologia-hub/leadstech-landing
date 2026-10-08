@@ -248,6 +248,8 @@ footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 @keyframes lm{to{transform:translateX(calc(-50% - 28px))}}
 .lgo{flex:none;width:150px;height:56px;display:grid;place-items:center;border:1px dashed var(--line);border-radius:12px;color:var(--mut);font-size:13px}
 .lgo img{max-width:130px;max-height:36px;object-fit:contain;filter:grayscale(1);opacity:.65;transition:.2s}.lgo:hover img{filter:none;opacity:1}
+.fcols{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:860px){.fcols{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){.lmq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.lmt{animation:none}}
 .pp{display:grid;grid-template-columns:minmax(0,720px);gap:20px;margin-top:44px;align-items:stretch}
 .pc{display:flex;flex-direction:column}.pc .btn{align-self:flex-start;margin-top:auto}
@@ -402,7 +404,7 @@ body{padding-bottom:84px}
 <div class="pm"><button class="pb" type="button" aria-expanded="false" aria-haspopup="true">Produtos <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <div class="pmenu" hidden><button class="pi" type="button" data-go="b2b"><b>Leadstech Prospecção B2B</b><small>Prospecte empresas com base de 28 milhões, IA e WhatsApp Oficial</small></button><button class="pi" type="button" data-go="mass"><b>Leadstech Envios</b><small>Disparo em massa para bancos, financeiras e corban, sem mensalidade</small></button><button class="pi pi2" type="button" data-go="home">Ver visão geral</button></div></div></div>
 <div class="links"><a data-for="home" href="#como">Como funciona</a><a data-for="b2b" href="#buscar">Dados</a><a data-for="mass" href="#publico">Para quem</a><a data-for="b2b" href="#base">Sua base</a><a data-for="mass" href="#utility">Utilidade</a><a data-for="mass" href="#link">Link rotativo</a><a data-for="mass" href="#bm">BM</a><a data-for="prod" href="#numeros">Números</a><a data-for="b2b" href="#recursos">Recursos</a><a data-for="bh" href="#depoimentos">Clientes</a><a data-for="prod" href="#preco">Planos</a><a data-for="prod" href="#faq">FAQ</a></div>
-<a class="btn" href="https://wa.me/5562984854833?text=Ol%C3%A1%2C%20venho%20do%20site%20e%20gostaria%20de%20uma%20demonstra%C3%A7%C3%A3o%20da%20plataforma."><span class="cd">Agendar demonstração</span><span class="cm">Demonstração</span></a><a class="btn ghost" href="https://leadstech.app.br/login" target="_blank" rel="noopener">Entrar</a>
+<a class="btn ghost" href="https://leadstech.app.br/login" target="_blank" rel="noopener">Entrar</a>
 </div></nav>
 
 
@@ -700,7 +702,7 @@ body{padding-bottom:84px}
 
 <footer style="border-top:1px solid var(--line);padding:24px 0;color:var(--mut);font-size:13px;background:#fbfdfc">
 <div class="w" style="padding-top:28px;padding-bottom:24px">
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:28px;margin-bottom:28px">
+<div class="fcols" style="display:grid;gap:28px;margin-bottom:28px">
 <div>
 <div style="margin-bottom:12px"><img src="https://i.postimg.cc/13KdnT3T/variada-(2).png" alt="LEADSTECH" style="height:60px;width:auto"></div>
 <p style="color:var(--mut);font-size:13px;line-height:1.6">Infraestrutura completa para prospecção ativa B2B no WhatsApp. Tecnologia, números dedicados e IA em uma única operação.</p>
