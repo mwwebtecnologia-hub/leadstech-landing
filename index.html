@@ -279,7 +279,7 @@ body[data-mode="b2b"] [data-for="mass"],body[data-mode="b2b"] [data-for="home"],
 .pb{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:600 15px var(--b);color:var(--tx);cursor:pointer}
 .pb:hover,.pb[aria-expanded=true]{border-color:var(--acc)}.pb.on{background:var(--btn);border-color:var(--btn);color:var(--ink)}
 .pb svg{transition:transform .2s}.pb[aria-expanded=true] svg{transform:rotate(180deg)}
-.pmenu{position:absolute;top:calc(100% + 10px);left:0;width:340px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px;box-shadow:var(--sh);z-index:30}
+.pmenu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:340px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px;box-shadow:var(--sh);z-index:30}
 .pmenu[hidden]{display:none}
 .pi{display:block;width:100%;text-align:left;background:none;border:0;border-radius:12px;padding:12px 14px;cursor:pointer;color:var(--tx);font:inherit}
 .pi:hover,.pi.on{background:var(--bg2)}
@@ -287,8 +287,11 @@ body[data-mode="b2b"] [data-for="mass"],body[data-mode="b2b"] [data-for="home"],
 .pi2{font-size:14px;color:var(--mut)}
 .cm{display:none}
 .hc{display:grid;gap:16px}
-@media(max-width:860px){.cd{display:none}.cm{display:inline}.nl{gap:12px}.pmenu{width:min(340px,calc(100vw - 44px))}}
+@media(max-width:860px){.cd{display:none}.cm{display:inline}.nl{gap:12px}.pmenu{left:0;transform:none;width:min(340px,calc(100vw - 44px))}}
 .go{text-align:left}
+.choose{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+body[data-mode="home"] #como .st{display:none!important}
+@media(max-width:860px){.choose{grid-template-columns:1fr}}
 .hc .go{padding:22px 24px;gap:8px}.hc .go h3{font-size:24px}.hc .go p{font-size:15px}
 .hc .gb{background:none;padding:0;margin-top:2px;color:var(--acc);border-radius:0;text-decoration:underline;text-underline-offset:4px}
 .cw{overflow-x:auto;margin-top:36px;padding-bottom:6px}
@@ -661,6 +664,11 @@ h1{font-size:34px}
 
 <section id="como" style="background:var(--bg2)"><div class="w">
 <h2>Operação ativa em até 48 horas, sem você configurar nada.</h2>
+<p class="mut" data-for="home" style="margin:18px 0 0;max-width:62ch"><b>Qual é o seu momento?</b> Escolha a opção que descreve a sua operação e veja a solução ideal para você.</p>
+<div class="choose" data-for="home">
+<button type="button" class="go" data-go="b2b"><span class="tg">Leadstech Prospecção B2B</span><h3>Quero vender para empresas</h3><p>Você ainda não tem uma base e quer que a Leadstech encontre empresas com o perfil ideal.</p><span class="gb">Ver solução</span></button>
+<button type="button" class="go" data-go="mass"><span class="tg">Leadstech Envios</span><h3>Quero disparar para minha base</h3><p>Você já tem os contatos e precisa de volume diário pela API oficial.</p><span class="gb">Ver solução</span></button>
+</div>
 <div class="st">
 <div class="sp"><span class="n">1</span><h3>Configuramos a BM</h3><p>Conectamos a sua BM verificada ou disponibilizamos a nossa, e ligamos o WhatsApp API.</p></div>
 <div class="sp"><span class="n">2</span><h3>Ativamos o número e o template</h3><p>Configuramos o número virtual, com o DDD que você escolher, e aprovamos o template na Meta.</p></div>
@@ -785,8 +793,6 @@ h1{font-size:34px}
 </div>
 </div>
 </footer>
-
-<div class="sticky"><a class="btn" href="https://wa.me/5562984854833?text=Ol%C3%A1%2C%20venho%20do%20site%20e%20gostaria%20de%20uma%20demonstra%C3%A7%C3%A3o%20da%20plataforma.">Agendar demonstração</a></div>
 
 <script>
 (function(){
