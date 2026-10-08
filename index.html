@@ -896,8 +896,8 @@ sl.addEventListener('input',u);u();
 })();
 (function(){
 var b=document.body,pm=document.querySelector('.pm'),pb=pm.querySelector('.pb'),pmn=pm.querySelector('.pmenu'),
-H={home:'#inicio',b2b:'#prospeccao-b2b',mass:'#envios'},cur='home';
-function fromHash(){var h=location.hash;return h=='#envios'?'mass':h=='#prospeccao-b2b'?'b2b':h=='#inicio'?'home':null}
+H={home:'#inicio',b2b:'#prospeccao-ativa-no-whatsapp-via-api',mass:'#sistema-corban-para-disparo-em-massa-via-api'},cur='home';
+function fromHash(){var h=location.hash;return (h=='#envios'||h=='#sistema-corban-para-disparo-em-massa-via-api')?'mass':(h=='#prospeccao-b2b'||h=='#prospeccao-ativa-no-whatsapp-via-api')?'b2b':h=='#inicio'?'home':null}
 function shut(){pmn.hidden=true;pb.setAttribute('aria-expanded','false')}
 function apply(m,top){cur=m;b.setAttribute('data-mode',m);[].forEach.call(document.querySelectorAll('.pi'),function(x){x.classList.toggle('on',x.dataset.go==m)});pb.classList.toggle('on',m!='home');shut();if(top)window.scrollTo(0,0)}
 function go(m){apply(m,true);try{location.hash=H[m]}catch(e){}}
