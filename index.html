@@ -249,7 +249,7 @@ footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .lgo{flex:none;width:210px;height:96px;display:grid;place-items:center;border:1px dashed var(--line);border-radius:12px;color:var(--mut);font-size:13px}
 .lgo img{max-width:180px;max-height:64px;object-fit:contain;filter:grayscale(1);opacity:.65;transition:.2s}.lgo:hover img{filter:none;opacity:1}
 .fcols{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media(max-width:860px){.fr>*{min-width:0}}
+@media(max-width:860px){.fcols{grid-template-columns:1fr 1fr}.fr>*{min-width:0}}
 @media(prefers-reduced-motion:reduce){.lmq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.lmt{animation:none}}
 .pp{display:grid;grid-template-columns:minmax(0,720px);gap:20px;margin-top:44px;align-items:stretch}
 .pc{display:flex;flex-direction:column}.pc .btn{align-self:flex-start;margin-top:auto}
