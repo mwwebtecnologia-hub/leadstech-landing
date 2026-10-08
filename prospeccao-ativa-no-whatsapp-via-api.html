@@ -277,7 +277,7 @@ body[data-mode="b2b"] [data-for="mass"],body[data-mode="b2b"] [data-for="home"],
 .nl{display:flex;align-items:center;gap:22px}
 .pm{position:relative}
 .pb{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:600 15px var(--b);color:var(--tx);cursor:pointer}
-.pb:hover,.pb[aria-expanded=true]{border-color:var(--acc)}.pb.on{background:var(--btn);border-color:var(--btn);color:var(--ink)}
+.pb:hover,.pb[aria-expanded=true]{border-color:var(--acc)}
 .pb svg{transition:transform .2s}.pb[aria-expanded=true] svg{transform:rotate(180deg)}
 .pmenu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:340px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px;box-shadow:var(--sh);z-index:30}
 .pmenu[hidden]{display:none}
@@ -410,6 +410,7 @@ nav a.btn:not(.ghost){display:none}
 }
 @media(max-width:480px){
 .fcols a{overflow-wrap:anywhere}
+.mpw{flex-direction:column;align-items:flex-start;gap:2px}
 .cta{gap:10px}
 .cta .btn{flex:1 1 100%;justify-content:center}
 .nl .logo img{height:32px!important}
@@ -888,7 +889,7 @@ var b=document.body,pm=document.querySelector('.pm'),pb=pm.querySelector('.pb'),
 H={home:'#inicio',b2b:'#prospeccao-ativa-no-whatsapp-via-api',mass:'#sistema-corban-para-disparo-em-massa-via-api'},cur='home';
 function fromHash(){var h=location.hash;return (h=='#envios'||h=='#sistema-corban-para-disparo-em-massa-via-api')?'mass':(h=='#prospeccao-b2b'||h=='#prospeccao-ativa-no-whatsapp-via-api')?'b2b':h=='#inicio'?'home':null}
 function shut(){pmn.hidden=true;pb.setAttribute('aria-expanded','false')}
-function apply(m,top){cur=m;b.setAttribute('data-mode',m);[].forEach.call(document.querySelectorAll('.pi'),function(x){x.classList.toggle('on',x.dataset.go==m)});pb.classList.toggle('on',m!='home');shut();if(top)window.scrollTo(0,0)}
+function apply(m,top){cur=m;b.setAttribute('data-mode',m);[].forEach.call(document.querySelectorAll('.pi'),function(x){x.classList.toggle('on',x.dataset.go==m)});shut();if(top)window.scrollTo(0,0)}
 function go(m){apply(m,true);try{location.hash=H[m]}catch(e){}}
 pb.addEventListener('click',function(e){e.stopPropagation();var o=pmn.hidden;pmn.hidden=!o;pb.setAttribute('aria-expanded',o)});
 document.addEventListener('click',function(e){if(!pm.contains(e.target))shut()});
