@@ -396,6 +396,27 @@ body{padding-bottom:84px}
 .whatsapp-float{position:fixed;bottom:24px;right:24px;z-index:100;width:60px;height:60px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:.2s;text-decoration:none}
 .whatsapp-float:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(37,211,102,.5)}
 .whatsapp-float svg{width:32px;height:32px;fill:#fff}
+html,body{overflow-x:clip}
+.mpw{flex-wrap:wrap;row-gap:8px;max-width:100%}
+@media(max-width:860px){
+.whatsapp-float{bottom:92px;right:16px;width:52px;height:52px}
+.whatsapp-float svg{width:28px;height:28px}
+.fb{padding:48px 20px}
+nav a.btn:not(.ghost){display:none}
+}
+@media(max-width:480px){
+.fcols a{overflow-wrap:anywhere}
+.cta{gap:10px}
+.cta .btn{flex:1 1 100%;justify-content:center}
+.nl .logo img{height:32px!important}
+.pb{padding:7px 11px;font-size:13px}
+nav a.btn.ghost{padding:8px 13px;font-size:13px}
+.ml2{font-size:24px!important}
+.ml2 svg{width:36px;height:19px}
+.pw{font-size:14px}
+h1{font-size:34px}
+.hero p.lead{font-size:17px}
+}
 </style>
 </head>
 <body data-mode="home">
